@@ -12,6 +12,6 @@ public class Die {
         return _value;
     }
     public void roll(){
-        _value = _rnd.nextInt(1,7);
+        _value = _rnd.nextInt(6)+1;
     }
 }
