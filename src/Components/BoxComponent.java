@@ -17,7 +17,7 @@ public class BoxComponent extends Component {
         Point topLeft = this.location;
         Point bottomRight = new Point(location.x + size.width, location.y + size.height);
 
-        for(Point point = topLeft; point.y < bottomRight.y; point.y++){
+        for(Point point = new Point(location.x,location.y); point.y < bottomRight.y; point.y++){
             Console.setCursorPosition(point);
             String outRow = String.valueOf(_fillChar).repeat(this.size.width);
             System.out.println(outRow);
