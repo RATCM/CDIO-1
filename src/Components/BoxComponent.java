@@ -14,10 +14,10 @@ public class BoxComponent extends Component {
 
     @Override
     public void update() {
-        Point topLeft = this.location;
         Point bottomRight = new Point(location.x + size.width, location.y + size.height);
 
-        for(Point point = new Point(location.x,location.y); point.y < bottomRight.y; point.y++){
+        for(int y = location.y; y < bottomRight.y; y++){
+            Point point = new Point(location.x, y);
             Console.setCursorPosition(point);
             String outRow = String.valueOf(_fillChar).repeat(this.size.width);
             System.out.println(outRow);

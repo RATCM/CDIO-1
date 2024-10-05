@@ -1,5 +1,6 @@
 package Components;
 
+import Utils.Color;
 import Utils.Console;
 import Utils.Point;
 import Utils.Size;
@@ -17,12 +18,17 @@ public class TextComponent extends Component{
         String[] outputString = calculateOutputString();
         Console.setCursorPosition(this.location);
 
+        Console.setBackgroundColor(this.backgroundColor);
+        Console.setForegroundColor(this.forgroundColor);    
+
         for(int i = 0; i < outputString.length; i++){
             Point p = new Point(this.location.x, this.location.y + i);
             Console.setCursorPosition(p);
 
             System.out.println(outputString[i]);
         }
+
+        Console.resetColor();
     }
 
     private String[] calculateOutputString(){
