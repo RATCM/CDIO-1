@@ -13,6 +13,11 @@ public class TextComponent extends Component{
         this._text = text;
     }
 
+    public TextComponent(Point location, Size size, String text, Color backgroundColor, Color foregroundColor){
+        super(location, size, backgroundColor, foregroundColor);
+        this._text = text;
+    }
+
     @Override
     public void update() {
         String[] outputString = calculateOutputString();

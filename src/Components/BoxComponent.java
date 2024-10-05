@@ -15,6 +15,10 @@ public class BoxComponent extends Component {
     @Override
     public void update() {
         Point bottomRight = new Point(location.x + size.width, location.y + size.height);
+        Console.setCursorPosition(this.location);
+        
+        Console.setBackgroundColor(this.backgroundColor);
+        Console.setForegroundColor(this.forgroundColor);
 
         for(int y = location.y; y < bottomRight.y; y++){
             Point point = new Point(location.x, y);
@@ -22,5 +26,7 @@ public class BoxComponent extends Component {
             String outRow = String.valueOf(_fillChar).repeat(this.size.width);
             System.out.println(outRow);
         }
+
+        Console.resetColor();
     }
 }
