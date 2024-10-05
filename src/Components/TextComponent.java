@@ -20,6 +20,7 @@ public class TextComponent extends Component{
 
     @Override
     public void update() {
+        clearComponent();
         String[] outputString = calculateOutputString();
         Console.setCursorPosition(this.location);
 

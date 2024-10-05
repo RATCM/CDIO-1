@@ -14,9 +14,10 @@ public class BoxComponent extends Component {
 
     @Override
     public void update() {
+        clearComponent();
         Point bottomRight = new Point(location.x + size.width, location.y + size.height);
         Console.setCursorPosition(this.location);
-        
+
         Console.setBackgroundColor(this.backgroundColor);
         Console.setForegroundColor(this.forgroundColor);
 
