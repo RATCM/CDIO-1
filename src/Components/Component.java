@@ -1,6 +1,7 @@
 package Components;
 
 import Utils.Color;
+import Utils.Console;
 import Utils.Point;
 import Utils.Size;
 
@@ -24,5 +25,12 @@ public abstract class Component {
         this.forgroundColor = foregroundColor;
     }
 
+    public void clearComponent(){
+        var str = " ".repeat(size.width);
+        for(int y = location.y; y < location.y + size.height; y++){
+            Console.setCursorPosition(new Point(location.x, y));
+            System.out.println(str);
+        }
+    }
     public abstract void update();
 }
