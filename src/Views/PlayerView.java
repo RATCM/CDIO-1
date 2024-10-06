@@ -1,12 +1,11 @@
 package Views;
 import Components.BoxComponent;
-import Components.Component;
 import Components.TextComponent;
 import Views.Interfaces.IPlayerView;
 import Utils.Point;
 import Utils.Size;
 
-public class PlayerView extends Component implements IPlayerView {
+public class PlayerView extends View implements IPlayerView {
     BoxComponent _playerNameBox1;
     BoxComponent _playerNameBox2;
     TextComponent _playerNameText;
@@ -15,12 +14,14 @@ public class PlayerView extends Component implements IPlayerView {
     BoxComponent _playerPointsBox2;
     TextComponent _playerPointsText;
 
-
-
-    public PlayerView(Point location, String playerName){
+    public PlayerView(Point location){
         // The size is fixed
         super(location, new Size(15,10));
+        
+        initializeView();
+    }
 
+    protected void initializeView(){
         _playerNameBox1 =
             new BoxComponent(
                 this.location,
@@ -37,7 +38,7 @@ public class PlayerView extends Component implements IPlayerView {
             new TextComponent(
                 _playerNameBox2.location,
                 _playerNameBox2.size,
-                playerName);
+                "");
 
 
         _playerPointsBox1 =
@@ -60,7 +61,7 @@ public class PlayerView extends Component implements IPlayerView {
     }
 
     public void update() {
-        clearComponent();
+        clearView();
         _playerNameBox1.update();
         _playerNameBox2.update();
         _playerNameText.update();
@@ -110,6 +111,5 @@ public class PlayerView extends Component implements IPlayerView {
                     _playerNameBox2.size,
                     name);
         }
-
     }
 }
