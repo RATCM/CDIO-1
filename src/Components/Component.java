@@ -14,8 +14,8 @@ public abstract class Component {
     public Component(Point location, Size size){
         this.location = location;
         this.size = size;
-        this.backgroundColor = Color.Black;
-        this.forgroundColor = Color.White;
+        this.backgroundColor = Color.None;
+        this.forgroundColor = Color.None;
     }
 
     public Component(Point location, Size size, Color backgroundColor, Color foregroundColor){
