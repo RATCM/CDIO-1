@@ -1,9 +1,9 @@
 package Views;
 import Components.BoxComponent;
 import Components.TextComponent;
-import Views.Interfaces.IPlayerView;
 import Utils.Point;
 import Utils.Size;
+import Views.Interfaces.IPlayerView;
 
 public class PlayerView extends View implements IPlayerView {
     BoxComponent _playerNameBox1;
@@ -21,7 +21,8 @@ public class PlayerView extends View implements IPlayerView {
         initializeView();
     }
 
-    protected void initializeView(){
+    @Override
+    protected final void initializeView(){
         _playerNameBox1 =
             new BoxComponent(
                 this.location,
@@ -60,6 +61,7 @@ public class PlayerView extends View implements IPlayerView {
                 "0");
     }
 
+    @Override
     public void update() {
         clearView();
         _playerNameBox1.update();
@@ -71,6 +73,7 @@ public class PlayerView extends View implements IPlayerView {
         _playerPointsText.update();
     }
 
+    @Override
     public void setPoints(int points, boolean centered){
         if(centered){
             var str = String.valueOf(points);
@@ -93,6 +96,7 @@ public class PlayerView extends View implements IPlayerView {
         }
     }
 
+    @Override
     public void setName(String name, boolean centered){
         if(centered){
             Size newSize = new Size(name.length(), 1);
