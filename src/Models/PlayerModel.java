@@ -1,10 +1,10 @@
 package Models;
 
-public class Player {
+public class PlayerModel {
     public final String name;
     public int points;
 
-    public Player(String name){
+    public PlayerModel(String name){
         this.name = name;
         points = 0;
     }
