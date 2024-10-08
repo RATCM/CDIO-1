@@ -8,8 +8,8 @@ import Utils.Size;
 public abstract class Component {
     public final Point location;
     public final Size size;
-    public final Color backgroundColor;
-    public final Color forgroundColor;
+    public Color backgroundColor;
+    public Color forgroundColor;
 
     public Component(Point location, Size size){
         this.location = location;
