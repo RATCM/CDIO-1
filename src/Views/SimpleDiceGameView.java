@@ -1,7 +1,7 @@
 package Views;
 
-import Views.Interfaces.IDiceGameView;
 import Models.PlayerModel;
+import Views.Interfaces.IDiceGameView;
 
 // Note that this class doesn't extend the View class
 // this is because this view is way more simple
@@ -45,6 +45,16 @@ public class SimpleDiceGameView implements IDiceGameView {
     }
 
     @Override
+    public void outputPlayerDetails(int index) {
+        var player = _players[index];
+
+        System.out.println();
+        System.out.println("["+player.name + "] has:");
+        System.out.println(player.points + " points");
+        System.out.println();
+    }
+
+    @Override
     public void outputDiceRollResult(int sum, boolean isEqual) {
         var player = _players[_currentSelectedPlayer];
 
@@ -60,5 +70,6 @@ public class SimpleDiceGameView implements IDiceGameView {
         }
         System.out.println();
     }
+
 
 }

@@ -1,11 +1,11 @@
 package Views;
 
-import Views.Interfaces.IDiceGameView;
 import Components.RawTextComponent;
 import Models.PlayerModel;
 import Utils.Color;
 import Utils.Point;
 import Utils.Size;
+import Views.Interfaces.IDiceGameView;
 
 // This class is essentialy the view for the "Good UI".
 // I.e it has a GUI with colored text and a pretty layout.
@@ -89,6 +89,17 @@ public class VisualDiceGameView extends View implements IDiceGameView {
         update();
     }
 
+    @Override
+    public void outputPlayerDetails(int index) {
+        PlayerModel curPlayer = _players[index];
+
+
+        _allPlayersView.setPoints(_currentSelectedPlayer, curPlayer.points);
+        _allPlayersView.setName(_currentSelectedPlayer, curPlayer.name);
+
+        update();
+    }
+
 
     // TODO: Create a view for the Dice roll results and use it in this method
     @Override
@@ -130,4 +141,5 @@ public class VisualDiceGameView extends View implements IDiceGameView {
         highlightSelectedPlayer();
         update();
     }
+
 }
