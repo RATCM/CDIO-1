@@ -1,5 +1,6 @@
 package Views;
 
+import Utils.Color;
 import Utils.Point;
 import Utils.Size;
 import Views.Interfaces.IAllPlayersView;
@@ -46,5 +47,9 @@ public class AllPlayersView extends View implements IAllPlayersView {
     @Override
     public void setPoints(int index, int points){
         _playerViews[index].setPoints(points, true);
+    }
+
+    public void setPlayerNameColor(int index, Color color){
+        _playerViews[index].setNameForegroundColor(color);
     }
 }
