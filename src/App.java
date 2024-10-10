@@ -1,51 +1,52 @@
-import Components.RawTextComponent;
-import Utils.Console;
-import Utils.Color;
-import Utils.Point;
-import Utils.Size;
-import Views.PlayerView;
+import Controllers.*;
+import Models.*;
+import Models.Rules.*;
+import Views.*;
+import Views.Interfaces.*;
 
 public class App {
     public static void main(String[] args){
-        
+        gameLoop();
     }
 
-    private static void sampleUI(){
-        Console.clear();
+    private static void gameLoop(){
+        // [SETUP]:
+        var scanner = new java.util.Scanner(System.in);
+        PlayerIndexer currentPlayerIndex = new PlayerIndexer(0);
+        PlayerModel[] players = new PlayerModel[]{
+            new PlayerModel("Player1"),
+            new PlayerModel("Player2")
+        };
+
+        IDiceGameView view = new VisualDiceGameView(players, currentPlayerIndex);
+
+        PlayerController[] playerControllers = new PlayerController[]{
+            new PlayerController(players[0], view),
+            new PlayerController(players[1], view)
+        };
+
+        playerControllers[0].setPointsBound(0, 40);
+        playerControllers[1].setPointsBound(0, 40);
         
-        // Ascii art made using:
-        // https://patorjk.com/software/taag/
-        var diceGameText = 
-            " ________  ___  ________  _______\n" +
-            "|\\   ___ \\|\\  \\|\\   ____\\|\\  ___ \\\n" +
-            "\\ \\  \\_|\\ \\ \\  \\ \\  \\___|\\ \\   __/|\n" +
-            " \\ \\  \\ \\\\ \\ \\  \\ \\  \\    \\ \\  \\_|/__\n" +
-            "  \\ \\  \\_\\\\ \\ \\  \\ \\  \\____\\ \\  \\_|\\ \\\n" +
-            "   \\ \\_______\\ \\__\\ \\_______\\ \\_______\\\n" +
-            "    \\|_______|\\|__|\\|_______|\\|_______|\n" +
-            " ________  ________  _____ ______   _______\n" +
-            "|\\   ____\\|\\   __  \\|\\   _ \\  _   \\|\\  ___ \\\n" +
-            "\\ \\  \\___|\\ \\  \\|\\  \\ \\  \\\\\\__\\ \\  \\ \\   __/|\n" +
-            " \\ \\  \\  __\\ \\   __  \\ \\  \\\\|__| \\  \\ \\  \\_|/__\n" +
-            "  \\ \\  \\|\\  \\ \\  \\ \\  \\ \\  \\    \\ \\  \\ \\  \\_|\\ \\\n" +
-            "   \\ \\_______\\ \\__\\ \\__\\ \\__\\    \\ \\__\\ \\_______\\\n" +
-            "    \\|_______|\\|__|\\|__|\\|__|     \\|__|\\|_______|\n";
+        GameRule[] rules = new GameRule[]{
+            new DiceSumRule(playerControllers, currentPlayerIndex),
+            new TwoIdenticalRule(playerControllers, currentPlayerIndex),
+            new TwoOnesRule(playerControllers, currentPlayerIndex),
+            new TwoSixesRule(playerControllers, currentPlayerIndex),
+            new WinConditionRule(playerControllers, currentPlayerIndex, 40)
+        };
 
+        DiceGameModel diceGame = new DiceGameModel();
 
-        var diceGameView = new RawTextComponent(new Point(7,1), new Size(60,15), diceGameText, Color.Black, Color.Blue);
-        var view1 = new PlayerView(new Point(5,20));
-        var view2 = new PlayerView(new Point(45,20));
-
-        view1.setPoints(5, true);
-        view2.setPoints(10, true);
         
-        view1.setName("Player1", true);
-        view2.setName("Player2", true);
-        
-        diceGameView.update();
-        view1.update();
-        view2.update();
+        DiceGameController diceGameController = new DiceGameController(diceGame, view, rules, currentPlayerIndex);
 
-        Console.setCursorPosition(new Point(1, 50));
+        // [Game Logic]
+        while(!(playerControllers[0].hasWon() || playerControllers[1].hasWon())){
+            scanner.nextLine();
+            var result = playerControllers[currentPlayerIndex.index].roll(diceGame);
+            diceGameController.applyRules(result);
+            diceGameController.switchToNextPlayer();
+        }
     }
 }

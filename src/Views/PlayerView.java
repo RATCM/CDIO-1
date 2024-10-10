@@ -1,6 +1,7 @@
 package Views;
 import Components.BoxComponent;
 import Components.TextComponent;
+import Utils.Color;
 import Utils.Point;
 import Utils.Size;
 import Views.Interfaces.IPlayerView;
@@ -115,5 +116,9 @@ public class PlayerView extends View implements IPlayerView {
                     _playerNameBox2.size,
                     name);
         }
+    }
+
+    public void setNameForegroundColor(Color color){
+        _playerNameText.forgroundColor = color;
     }
 }

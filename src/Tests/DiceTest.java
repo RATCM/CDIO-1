@@ -1,4 +1,6 @@
 package Tests;
+import java.time.Instant;
+
 import Models.DieModel;
 
 public class DiceTest {
@@ -34,6 +36,33 @@ public class DiceTest {
                           "\nStandard Deviation: " + standardDeviation + "    " + mean ;
         return testResult;
     }
+    
+    //Test to check the speed of a roll in ms (averaged over 20 rolls)
+    public static void diceTimeTest() {
+        var Die = new DieModel();
+        
+        long timeSum = 0;
+        Instant timeStart = Instant.now();
+        Instant timeEnd = Instant.now();
+        
+        //Rolls and shows the result; stores time elapsed in ms
+        for(var i = 0; i < 20 ; i++){ 
+            timeStart = Instant.now();
+            Die.roll();
+            var currentDieVal = Die.getValue();
+            System.out.println("Roll " + i + ": " + currentDieVal);
+            timeEnd = Instant.now();
+            timeSum = timeSum + (timeEnd.toEpochMilli() - timeStart.toEpochMilli());
+        }
+        
+        //Finds mean computation time
+        var meanCompTime = timeSum/20;
+        if (meanCompTime < 333) {
+            System.out.println("Time test success!");
+        }
+        else {
+            System.out.println("Fail!");
+        }
 
     static double s_v_Array(int values[], double mean, int rollCount) {
         double sumVar = 0;
