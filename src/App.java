@@ -18,7 +18,7 @@ public class App {
             new PlayerModel("Player2")
         };
 
-        IDiceGameView view = new VisualDiceGameView(players, currentPlayerIndex);
+        IDiceGameView view = new SimpleDiceGameView(players, currentPlayerIndex);
 
         PlayerController[] playerControllers = new PlayerController[]{
             new PlayerController(players[0], view),
@@ -29,11 +29,11 @@ public class App {
         playerControllers[1].setPointsBound(0, 40);
         
         GameRule[] rules = new GameRule[]{
+            new WinConditionRule(playerControllers, currentPlayerIndex, 40),
             new DiceSumRule(playerControllers, currentPlayerIndex),
             new TwoIdenticalRule(playerControllers, currentPlayerIndex),
             new TwoOnesRule(playerControllers, currentPlayerIndex),
-            new TwoSixesRule(playerControllers, currentPlayerIndex),
-            new WinConditionRule(playerControllers, currentPlayerIndex, 40)
+            new TwoSixesRule(playerControllers, currentPlayerIndex)
         };
 
         DiceGameModel diceGame = new DiceGameModel();
