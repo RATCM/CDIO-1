@@ -32,7 +32,8 @@ public class DiceTest {
                           "\nAmount of 4's: " + distribution[3] + "  Expected amount: " + avgDis + "   Deviation: " + (distribution[3]-avgDis)*100.0/avgDis + "%" +
                           "\nAmount of 5's: " + distribution[4] + "  Expected amount: " + avgDis + "   Deviation: " + (distribution[4]-avgDis)*100.0/avgDis + "%" +
                           "\nAmount of 6's: " + distribution[5] + "  Expected amount: " + avgDis + "   Deviation: " + (distribution[5]-avgDis)*100.0/avgDis + "%" +
-                          "\nStandard Deviation: " + standardDeviation + "    " + mean ;
+                          "\nStandard Deviation: " + standardDeviation + 
+                          "\nMean: " + mean ;
         return testResult;
     }
     
