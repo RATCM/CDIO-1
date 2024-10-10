@@ -6,7 +6,7 @@ public class DiceTest {
 
     
 
-    public static String diceSixTest() {
+    public static void diceSixTest() {
 
         var Die = new DieModel();
         int rollCount = 1000;
@@ -25,16 +25,15 @@ public class DiceTest {
         double mean = meanArray(distribution, rollCount);
         double standardDeviation = s_v_Array(distribution, mean, rollCount);
 
-        String testResult = "Test Result of Die \n" +
-                            "Amount of 1's: " + distribution[0] + "  Expected amount: " + avgDis + "   Deviation: " + (distribution[0]-avgDis)*100.0/avgDis + "%" +
-                          "\nAmount of 2's: " + distribution[1] + "  Expected amount: " + avgDis + "   Deviation: " + (distribution[1]-avgDis)*100.0/avgDis + "%" +
-                          "\nAmount of 3's: " + distribution[2] + "  Expected amount: " + avgDis + "   Deviation: " + (distribution[2]-avgDis)*100.0/avgDis + "%" +
-                          "\nAmount of 4's: " + distribution[3] + "  Expected amount: " + avgDis + "   Deviation: " + (distribution[3]-avgDis)*100.0/avgDis + "%" +
-                          "\nAmount of 5's: " + distribution[4] + "  Expected amount: " + avgDis + "   Deviation: " + (distribution[4]-avgDis)*100.0/avgDis + "%" +
-                          "\nAmount of 6's: " + distribution[5] + "  Expected amount: " + avgDis + "   Deviation: " + (distribution[5]-avgDis)*100.0/avgDis + "%" +
-                          "\nStandard Deviation: " + standardDeviation + 
-                          "\nMean: " + mean ;
-        return testResult;
+        System.out.println("Test Result of Die");
+        System.out.println("Mean: " + mean);
+        System.out.printf("Amount of 1's: %d Expected amount: %.2f Deviation: %.2f%% \n", distribution[0], avgDis, (distribution[0]-avgDis)*100.0/avgDis);
+        System.out.printf("Amount of 1's: %d Expected amount: %.2f Deviation: %.2f%% \n", distribution[1], avgDis, (distribution[1]-avgDis)*100.0/avgDis);
+        System.out.printf("Amount of 1's: %d Expected amount: %.2f Deviation: %.2f%% \n", distribution[2], avgDis, (distribution[2]-avgDis)*100.0/avgDis);
+        System.out.printf("Amount of 1's: %d Expected amount: %.2f Deviation: %.2f%% \n", distribution[3], avgDis, (distribution[3]-avgDis)*100.0/avgDis);
+        System.out.printf("Amount of 1's: %d Expected amount: %.2f Deviation: %.2f%% \n", distribution[4], avgDis, (distribution[4]-avgDis)*100.0/avgDis);
+        System.out.printf("Amount of 1's: %d Expected amount: %.2f Deviation: %.2f%% \n", distribution[5], avgDis, (distribution[5]-avgDis)*100.0/avgDis);
+        System.out.printf("Standard Deviation: %.2f ", standardDeviation);
     }
     
     //Test to check the speed of a roll in ms (averaged over 20 rolls)
