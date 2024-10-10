@@ -59,10 +59,10 @@ public class SimpleDiceGameView implements IDiceGameView {
         System.out.println("[" + player.name + "] rolled the dice");
         System.out.println("Sum of dice: " + sum);
         if(isEqual){
-            System.out.println("The dices have the same value");
+            System.out.println("The dice have the same value");
         }
         else{
-            System.out.println("The dices doesn't have the same value");
+            System.out.println("The dice don't have the same value");
         }
         System.out.println();
 
