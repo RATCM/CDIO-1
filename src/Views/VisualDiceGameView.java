@@ -1,6 +1,7 @@
 package Views;
 
 import Components.RawTextComponent;
+import Models.PlayerIndexer;
 import Models.PlayerModel;
 import Utils.Color;
 import Utils.Point;
@@ -10,12 +11,12 @@ import Views.Interfaces.IDiceGameView;
 // This class is essentialy the view for the "Good UI".
 // I.e it has a GUI with colored text and a pretty layout.
 public class VisualDiceGameView extends View implements IDiceGameView {
-    private int _currentSelectedPlayer;
+    private PlayerIndexer _currentSelectedPlayer;
     private final PlayerModel[] _players;
     private AllPlayersView  _allPlayersView;
     private RawTextComponent _gameTitleText;
 
-    public VisualDiceGameView(PlayerModel[] players){
+    public VisualDiceGameView(PlayerModel[] players, PlayerIndexer index){
         // For now we just assume there are only two players,
         // hence the fixed size.
         super(new Point(1,1),new Size(60, 35));
@@ -24,7 +25,7 @@ public class VisualDiceGameView extends View implements IDiceGameView {
         // tough there are only two players because
         // it makes it easier to switch between players.
         _players = players;
-        _currentSelectedPlayer = 0;
+        _currentSelectedPlayer = index;
 
         initializeView();
     }
@@ -53,38 +54,14 @@ public class VisualDiceGameView extends View implements IDiceGameView {
     }
 
     @Override
-    public void selectPlayer(int index) {
-        unHighlightSelectedPlayer();
-
-        _currentSelectedPlayer = index;
-
-        highlightSelectedPlayer();
-
-        _allPlayersView.update();
-    }
-
-    @Override
-    public void selectNextPlayer() {
-        unHighlightSelectedPlayer();
-
-        // We use the modulus operator so the index doesn't
-        // become larger or equal than the length of the array.
-        _currentSelectedPlayer = (_currentSelectedPlayer + 1) % _players.length;
-
-        highlightSelectedPlayer();
-
-        _allPlayersView.update();
-    }
-
-    @Override
     public void outputPlayerDetails() {
         // It is generally not good practice to use the fields inside
         // the view itself to update the view.
         // This should probably be avioided if possible
-        PlayerModel curPlayer = _players[_currentSelectedPlayer];
+        PlayerModel curPlayer = _players[_currentSelectedPlayer.index];
 
-        _allPlayersView.setPoints(_currentSelectedPlayer, curPlayer.points);
-        _allPlayersView.setName(_currentSelectedPlayer, curPlayer.name);
+        _allPlayersView.setPoints(_currentSelectedPlayer.index, curPlayer.points);
+        _allPlayersView.setName(_currentSelectedPlayer.index, curPlayer.name);
 
         update();
     }
@@ -94,8 +71,8 @@ public class VisualDiceGameView extends View implements IDiceGameView {
         PlayerModel curPlayer = _players[index];
 
 
-        _allPlayersView.setPoints(_currentSelectedPlayer, curPlayer.points);
-        _allPlayersView.setName(_currentSelectedPlayer, curPlayer.name);
+        _allPlayersView.setPoints(_currentSelectedPlayer.index, curPlayer.points);
+        _allPlayersView.setName(_currentSelectedPlayer.index, curPlayer.name);
 
         update();
     }
@@ -108,13 +85,13 @@ public class VisualDiceGameView extends View implements IDiceGameView {
     }
 
     private void highlightSelectedPlayer(){
-        var name = _players[_currentSelectedPlayer].name;
-        _allPlayersView.setName(_currentSelectedPlayer, "["+name+"]");
+        var name = _players[_currentSelectedPlayer.index].name;
+        _allPlayersView.setName(_currentSelectedPlayer.index, "["+name+"]");
     }
 
     private void unHighlightSelectedPlayer(){
-        var name = _players[_currentSelectedPlayer].name;
-        _allPlayersView.setName(_currentSelectedPlayer, name);
+        var name = _players[_currentSelectedPlayer.index].name;
+        _allPlayersView.setName(_currentSelectedPlayer.index, name);
     }
 
     // This method will generally not get called outside of this class
@@ -141,5 +118,4 @@ public class VisualDiceGameView extends View implements IDiceGameView {
         highlightSelectedPlayer();
         update();
     }
-
 }
