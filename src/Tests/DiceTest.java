@@ -1,7 +1,6 @@
 package Tests;
-import java.time.Instant;
-
 import Models.DieModel;
+import java.time.Instant;
 
 public class DiceTest {
 
@@ -63,6 +62,7 @@ public class DiceTest {
         else {
             System.out.println("Fail!");
         }
+    }
 
     static double s_v_Array(int values[], double mean, int rollCount) {
         double sumVar = 0;
