@@ -92,13 +92,13 @@ public class VisualDiceGameView extends View implements IDiceGameView {
 
     private void highlightSelectedPlayer(){
         var name = _players[_currentSelectedPlayer.index].name;
-        _allPlayersView.setName(_currentSelectedPlayer.index, "["+name+"]");
+        _allPlayersView.setNameNoResize(_currentSelectedPlayer.index, "["+name+"]");
         _allPlayersView.update();
     }
 
     private void unHighlightSelectedPlayer(){
         var name = _players[_currentSelectedPlayer.index].name;
-        _allPlayersView.setName(_currentSelectedPlayer.index, name);
+        _allPlayersView.setNameNoResize(_currentSelectedPlayer.index, name);
         _allPlayersView.update();
     }
 
@@ -132,9 +132,13 @@ public class VisualDiceGameView extends View implements IDiceGameView {
     @Override
     protected final void initializeView() {
         _gameTitleText = new RawTextComponent(new Point(7, 1), new Size(60,15), gameTitleText(), Color.Black, Color.Blue);
-        _allPlayersView = new AllPlayersView(new Point(5,20), _players.length);
+        
+        int widthAllPlayersView = 25 * (_players.length-1);
+        widthAllPlayersView += _players[_players.length-1].name.length() + 6;
 
-        Point locDiceThrowView = new Point(_allPlayersView.location.x, _allPlayersView.location.y + _allPlayersView.size.height);
+        _allPlayersView = new AllPlayersView(new Point(5,20), new Size(widthAllPlayersView, 10), _players);
+
+        Point locDiceThrowView = new Point(_allPlayersView.location.x, _allPlayersView.location.y + _allPlayersView.size.height + 3);
         _diceThrowResultView = new DiceThrowResultView(locDiceThrowView, _allPlayersView.size.width);
 
         for(int i = 0; i < _players.length; i++){

@@ -1,5 +1,6 @@
 package Views;
 import Components.BoxComponent;
+import Components.CenteredTextComponent;
 import Components.TextComponent;
 import Utils.Color;
 import Utils.Point;
@@ -9,15 +10,21 @@ import Views.Interfaces.IPlayerView;
 public class PlayerView extends View implements IPlayerView {
     BoxComponent _playerNameBox1;
     BoxComponent _playerNameBox2;
-    TextComponent _playerNameText;
+    CenteredTextComponent _playerNameText;
 
     BoxComponent _playerPointsBox1;
     BoxComponent _playerPointsBox2;
-    TextComponent _playerPointsText;
+    CenteredTextComponent _playerPointsText;
 
     public PlayerView(Point location){
         // The size is fixed
         super(location, new Size(15,10));
+        
+        initializeView();
+    }
+
+    public PlayerView(Point location, Size size){
+        super(location, size);
         
         initializeView();
     }
@@ -37,7 +44,7 @@ public class PlayerView extends View implements IPlayerView {
                 ' ');
         
         _playerNameText =
-            new TextComponent(
+            new CenteredTextComponent(
                 _playerNameBox2.location,
                 _playerNameBox2.size,
                 "");
@@ -56,7 +63,7 @@ public class PlayerView extends View implements IPlayerView {
             ' ');
 
         _playerPointsText =
-            new TextComponent(
+            new CenteredTextComponent(
                 _playerPointsBox2.location,
                 _playerPointsBox2.size,
                 "0");
@@ -75,47 +82,23 @@ public class PlayerView extends View implements IPlayerView {
     }
 
     @Override
-    public void setPoints(int points, boolean centered){
-        if(centered){
-            var str = String.valueOf(points);
+    public void setPoints(int points){
+        var str = String.valueOf(points);
 
-            Size newSize = new Size(str.length(), 1);
-            Point newPoint = Point.Add(_playerPointsBox2.location, new Point(_playerPointsBox2.size.width/2 - str.length()/2, _playerPointsBox2.size.height/2));
-
-            _playerPointsText =
-                new TextComponent(
-                    newPoint,
-                    newSize,
-                    str);
-        }
-        else{
-            _playerPointsText =
-                new TextComponent(
-                    _playerPointsBox2.location,
-                    _playerPointsBox2.size,
-                    String.valueOf(points));
-        }
+        _playerPointsText =
+            new CenteredTextComponent(
+                _playerPointsText.location,
+                _playerPointsText.size,
+                str);
     }
 
     @Override
-    public void setName(String name, boolean centered){
-        if(centered){
-            Size newSize = new Size(name.length(), 1);
-            Point newPoint = Point.Add(_playerNameBox2.location, new Point(_playerNameBox2.size.width/2 - name.length()/2, _playerNameBox2.size.height/2));
-
-            _playerNameText =
-                new TextComponent(
-                    newPoint,
-                    newSize,
-                    name);
-        }
-        else{
-            _playerNameText =
-                new TextComponent(
-                    _playerNameBox2.location,
-                    _playerNameBox2.size,
-                    name);
-        }
+    public void setName(String name){
+        _playerNameText =
+            new CenteredTextComponent(
+                _playerNameText.location,
+                _playerNameText.size,
+                name);
     }
 
     public void setNameForegroundColor(Color color){

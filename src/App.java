@@ -7,22 +7,42 @@ import Views.Interfaces.*;
 
 public class App {
     public static void main(String[] args){
+        var scanner = new java.util.Scanner(System.in);
+        
+        mainMenuSetup(scanner);
+        handleMainMenu();
+        
+        gameSetup(scanner);
         gameLoop();
     }
 
-    private static void gameLoop(){
+    private static PlayerController[] playerControllers;
+    private static DiceGameController diceGameController;
+    private static MainMenuController mainMenuController;
+
+    private static PlayerIndexer currentPlayerIndex;
+    private static DiceGameModel diceGame;
+    private static PlayerModel[] players;
+
+
+    private static void mainMenuSetup(java.util.Scanner scanner){
+        IMainMenuView view = new VisualMainMenuView(new Utils.Point(1,1), scanner);
+        mainMenuController = new MainMenuController(view);
+    }
+
+    private static void handleMainMenu(){
+        players = mainMenuController.getPlayers(2);
+        mainMenuController.startGame();
+    }
+
+    private static void gameSetup(java.util.Scanner scanner){
         // [SETUP]:
         Utils.Console.clear();
-        var scanner = new java.util.Scanner(System.in);
-        PlayerIndexer currentPlayerIndex = new PlayerIndexer(0);
-        PlayerModel[] players = new PlayerModel[]{
-            new PlayerModel("Player1"),
-            new PlayerModel("Player2")
-        };
-
+        currentPlayerIndex = new PlayerIndexer(0);
+        
         IDiceGameView view = new VisualDiceGameView(players, currentPlayerIndex, scanner);
 
-        PlayerController[] playerControllers = new PlayerController[]{
+        playerControllers = new PlayerController[]{
             new PlayerController(players[0], view),
             new PlayerController(players[1], view)
         };
@@ -38,11 +58,12 @@ public class App {
             new TwoSixesRule(playerControllers, currentPlayerIndex)
         };
 
-        DiceGameModel diceGame = new DiceGameModel();
+        diceGame = new DiceGameModel();
         
-        DiceGameController diceGameController = new DiceGameController(diceGame, view, rules, currentPlayerIndex);
+        diceGameController = new DiceGameController(diceGame, view, rules, currentPlayerIndex);
+    }
 
-        // [Game Logic]
+    private static void gameLoop(){
         while(!(playerControllers[0].hasWon() || playerControllers[1].hasWon())){
             // Shows an input prompt and waits for user to press enter.
             diceGameController.getUserInput();
