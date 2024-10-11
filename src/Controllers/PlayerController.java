@@ -4,7 +4,6 @@ import Models.DiceGameModel;
 import Models.PlayerModel;
 import Models.RollResult;
 import Views.Interfaces.IDiceGameView;
-import javax.swing.text.View;
 
 public class PlayerController {
     private PlayerModel _player;
@@ -28,7 +27,7 @@ public class PlayerController {
 
     public RollResult roll(DiceGameModel diceGame){
         if(!rolls.isEmpty()){
-            _lastRoll = rolls.getFirst();
+            _lastRoll = rolls.get(0);
         }
         var result = diceGame.rollDices();
         rolls.add(result);
@@ -53,13 +52,11 @@ public class PlayerController {
     }
 
     public void grantPoints(int points){
-        _player.points = Math.clamp(_player.points + points, _minPoints, _maxPoints);
-        _view.outputPlayerDetails();
+        _player.points = clamp(_player.points + points, _minPoints, _maxPoints);
     }
 
     public void removePoints(int points){
-        _player.points = Math.clamp(_player.points - points, _minPoints, _maxPoints);
-        _view.outputPlayerDetails();
+        _player.points = clamp(_player.points - points, _minPoints, _maxPoints);
     }
 
     public RollResult getPreviousRoll(){
@@ -72,5 +69,18 @@ public class PlayerController {
 
     public boolean hasWon(){
         return _player.getHasPlayerWon();
+    }
+
+    // The Math.Clamp method doesnt exist for older
+    // versions of Java, so we're defining it here
+    // If this becomes used in other classes, it should
+    // be put into a class in Utils
+    private static int clamp(int value, int min, int max){
+        var result = value;
+
+        result = Math.max(result, min); // result can't smaller than min
+        result = Math.min(result, max); // result can't be larger than max
+
+        return result;
     }
 }
