@@ -8,4 +8,8 @@ public final class RollResult {
         this.sum = sum;
         this.isIdentical = isIdentical;
     }
+
+    public boolean equals(RollResult other){
+        return this.sum == other.sum && this.isIdentical == other.isIdentical;
+    }
 }
