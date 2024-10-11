@@ -6,7 +6,7 @@ import Utils.Point;
 import Utils.Size;
 
 public class RawTextComponent extends Component{
-    private final String _text;
+    private String _text;
 
     public RawTextComponent(Point location, Size size, String text) {
         super(location, size);
@@ -18,6 +18,13 @@ public class RawTextComponent extends Component{
         this._text = text;
     }
 
+    public void setText(String text){
+        _text = text;
+    }
+
+    public String getText(){
+        return _text;
+    }
 
     @Override
     public void update() {
