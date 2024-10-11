@@ -1,15 +1,11 @@
 package Views;
 
-import Models.PlayerIndexer;
-import Views.Interfaces.IDiceGameView;
 import Views.Interfaces.IMainMenuView;
 
 public class SimpleMainMenuView implements IMainMenuView {
-    private PlayerIndexer _playerIndex;
     private java.util.Scanner _scanner;
 
-    public SimpleMainMenuView(PlayerIndexer playerIndex, java.util.Scanner scanner){
-        _playerIndex = playerIndex;
+    public SimpleMainMenuView(java.util.Scanner scanner){
         _scanner = scanner;
 
         showTitle();

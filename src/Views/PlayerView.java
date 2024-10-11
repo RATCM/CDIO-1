@@ -1,7 +1,6 @@
 package Views;
 import Components.BoxComponent;
 import Components.CenteredTextComponent;
-import Components.TextComponent;
 import Utils.Color;
 import Utils.Point;
 import Utils.Size;
