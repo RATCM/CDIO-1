@@ -19,7 +19,7 @@ public class TwoIdenticalRule extends GameRule {
     }
 
     @Override
-    public void apply(DiceGameController diceGameState) {
+    public void apply(DiceGameController diceGameState, RollResult unused) {
         diceGameState.grantPlayerExtraTurn();
     }
 }

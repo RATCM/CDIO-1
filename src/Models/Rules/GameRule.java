@@ -20,5 +20,5 @@ public abstract class GameRule {
     
 
     public abstract boolean isApplicaple(RollResult result);
-    public abstract void apply(DiceGameController diceGameState);
+    public abstract void apply(DiceGameController diceGameState, RollResult result);
 }

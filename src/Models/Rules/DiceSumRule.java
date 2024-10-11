@@ -11,17 +11,16 @@ public class DiceSumRule extends GameRule {
         super(playerStates, index);
     }
 
-    private RollResult _result;
+    //private RollResult _result;
 
     @Override
     public boolean isApplicaple(RollResult result) {
-        _result = result;
+        //_result = result;
         return result.sum != 2;
     }
 
     @Override
-    public void apply(DiceGameController diceGameState) {
-        playerStates[index.index].grantPoints(_result.sum);
+    public void apply(DiceGameController diceGameState, RollResult result) {
+        playerStates[index.index].grantPoints(result.sum);
     }
-
 }

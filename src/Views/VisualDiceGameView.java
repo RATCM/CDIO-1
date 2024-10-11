@@ -3,10 +3,13 @@ package Views;
 import Components.RawTextComponent;
 import Models.PlayerIndexer;
 import Models.PlayerModel;
+import Models.RollResult;
 import Utils.Color;
+import Utils.Console;
 import Utils.Point;
 import Utils.Size;
 import Views.Interfaces.IDiceGameView;
+import java.util.Scanner;
 
 // This class is essentialy the view for the "Good UI".
 // I.e it has a GUI with colored text and a pretty layout.
@@ -15,17 +18,20 @@ public class VisualDiceGameView extends View implements IDiceGameView {
     private final PlayerModel[] _players;
     private AllPlayersView  _allPlayersView;
     private RawTextComponent _gameTitleText;
+    private DiceThrowResultView _diceThrowResultView;
+    private Scanner _scanner;
 
-    public VisualDiceGameView(PlayerModel[] players, PlayerIndexer index){
+    public VisualDiceGameView(PlayerModel[] players, PlayerIndexer index, Scanner scanner){
         // For now we just assume there are only two players,
         // hence the fixed size.
-        super(new Point(1,1),new Size(60, 35));
+        super(new Point(1,1),new Size(60, 40));
 
         // I'm using an array for players even,
         // tough there are only two players because
         // it makes it easier to switch between players.
         _players = players;
         _currentSelectedPlayer = index;
+        _scanner = scanner;
 
         initializeView();
     }
@@ -70,28 +76,45 @@ public class VisualDiceGameView extends View implements IDiceGameView {
     public void outputPlayerDetails(int index) {
         PlayerModel curPlayer = _players[index];
 
-
         _allPlayersView.setPoints(_currentSelectedPlayer.index, curPlayer.points);
         _allPlayersView.setName(_currentSelectedPlayer.index, curPlayer.name);
 
         update();
     }
 
-
-    // TODO: Create a view for the Dice roll results and use it in this method
     @Override
     public void outputDiceRollResult(int sum, boolean isEqual) {
-        
+        var res = new RollResult(sum, isEqual);
+
+        _diceThrowResultView.setResult(_players[_currentSelectedPlayer.index], res);
+        _diceThrowResultView.updateResult();
     }
 
     private void highlightSelectedPlayer(){
         var name = _players[_currentSelectedPlayer.index].name;
         _allPlayersView.setName(_currentSelectedPlayer.index, "["+name+"]");
+        _allPlayersView.update();
     }
 
     private void unHighlightSelectedPlayer(){
         var name = _players[_currentSelectedPlayer.index].name;
         _allPlayersView.setName(_currentSelectedPlayer.index, name);
+        _allPlayersView.update();
+    }
+
+    private void showInputPrompt(){
+        highlightSelectedPlayer();
+        Point loc = new Point(location.x, location.y+size.height);
+        Console.setCursorPosition(loc);
+
+        System.out.print("Press [Enter] to roll dice");
+    }
+
+    private void clearInputPrompt(){
+        unHighlightSelectedPlayer();
+        Point loc1Point = new Point(location.x, location.y+size.height);
+        Point loc2Point =  new Point(location.x + size.width, location.y+size.height);
+        Console.clearRange(loc1Point, loc2Point);
     }
 
     // This method will generally not get called outside of this class
@@ -102,6 +125,7 @@ public class VisualDiceGameView extends View implements IDiceGameView {
         this.clearView();
         _allPlayersView.update();
         _gameTitleText.update();
+        _diceThrowResultView.update();
     }
 
     // This sets up all the components and sub-views
@@ -110,12 +134,36 @@ public class VisualDiceGameView extends View implements IDiceGameView {
         _gameTitleText = new RawTextComponent(new Point(7, 1), new Size(60,15), gameTitleText(), Color.Black, Color.Blue);
         _allPlayersView = new AllPlayersView(new Point(5,20), _players.length);
 
+        Point locDiceThrowView = new Point(_allPlayersView.location.x, _allPlayersView.location.y + _allPlayersView.size.height);
+        _diceThrowResultView = new DiceThrowResultView(locDiceThrowView, _allPlayersView.size.width);
+
         for(int i = 0; i < _players.length; i++){
             _allPlayersView.setPoints(i,0);
             _allPlayersView.setName(i, _players[i].name);
         }
 
         highlightSelectedPlayer();
+
+        this.clearView();
+        _allPlayersView.update();
+        _gameTitleText.update();
+    }
+
+    @Override
+    public void getUserInput() {
+        this.showInputPrompt();
+
+        _scanner.nextLine();
+        
+        this.clearInputPrompt();
+    }
+
+    @Override
+    public void outputAllPlayerDetails() {
+        for(int i = 0; i < _players.length; i++){
+            PlayerModel curPlayer = _players[i];
+            _allPlayersView.setPoints(i, curPlayer.points);
+        }
         update();
     }
 }

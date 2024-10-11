@@ -94,4 +94,21 @@ public class Console {
     public static void resetColor(){
         System.out.print("\u001B[0m");
     }
+
+    public static void clearRange(Point point1, Point point2){
+        // Make sure point1 is in top left and point2 is in the bottom right
+        Point topLeft = new Point(Math.min(point1.x, point2.x), Math.min(point1.y, point2.y));
+        Point bottomRight = new Point(Math.max(point1.x, point2.x), Math.max(point1.y, point2.y));
+        
+        // Calculate the output
+        int width = bottomRight.x - topLeft.x;
+        String outputLine = " ".repeat(width);
+
+        // Output to console
+        for(int y = topLeft.y; y <= bottomRight.y; y++){
+            int x = topLeft.x;
+            setCursorPosition(new Point(x,y));
+            System.out.println(outputLine);
+        }
+    }
 }

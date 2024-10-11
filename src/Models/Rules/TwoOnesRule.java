@@ -17,7 +17,7 @@ public class TwoOnesRule extends GameRule {
     }
 
     @Override
-    public void apply(DiceGameController diceGameState) {
+    public void apply(DiceGameController diceGameState, RollResult unused) {
         getCurrentPlayer().resetPoints();
     }
 }

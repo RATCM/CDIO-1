@@ -27,10 +27,13 @@ public class DiceGameController {
 
     public void switchToPlayer(int index){
         _currentPlayerIndex.index = index;
-        //_view.outputPlayerDetails();
     }
 
+    // This method is called at the end of each round
     public void switchToNextPlayer(){
+        // Show the user the new scores
+        _view.outputAllPlayerDetails();
+
         // Don't switch if player has extra turn
         if(!_playerHasExtraTurn){
             _currentPlayerIndex.index = (_currentPlayerIndex.index+1)%numberOfPlayers;
@@ -38,15 +41,19 @@ public class DiceGameController {
 
         // Make sure the field is always false afterwards
         _playerHasExtraTurn = false;
-        
-        //_view.outputPlayerDetails();
     }
 
     public void applyRules(RollResult result){
         for(var rule: _rules){
             if(rule.isApplicaple(result)){
-                rule.apply(this);
+                rule.apply(this, result);
             }
+        }
+    }
+
+    public void applyRule(GameRule rule, RollResult result){
+        if(rule.isApplicaple(result)){
+            rule.apply(this, result);
         }
     }
 
@@ -56,5 +63,9 @@ public class DiceGameController {
 
     public PlayerIndexer getCurrentPlayerIndex(){
         return _currentPlayerIndex;
+    }
+
+    public void getUserInput(){
+        _view.getUserInput();
     }
 }

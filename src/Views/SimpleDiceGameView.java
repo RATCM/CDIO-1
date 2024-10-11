@@ -3,6 +3,7 @@ package Views;
 import Models.PlayerIndexer;
 import Models.PlayerModel;
 import Views.Interfaces.IDiceGameView;
+import java.util.Scanner;
 
 // Note that this class doesn't extend the View class
 // this is because this view is way more simple
@@ -11,23 +12,25 @@ import Views.Interfaces.IDiceGameView;
 public class SimpleDiceGameView implements IDiceGameView {
     private final PlayerModel[] _players;
     private PlayerIndexer _index;
+    private Scanner _scanner;
 
-    public SimpleDiceGameView(PlayerModel[] players, PlayerIndexer index){
+    public SimpleDiceGameView(PlayerModel[] players, PlayerIndexer index, Scanner scanner){
         _players = players;
         this._index = index;
+        _scanner = scanner;
 
         showTitle();
-        showInputPrompt();
     }
 
     private void showTitle(){
         System.out.println("[Dice Game]");
         System.out.println();
     }
+
     private void showInputPrompt(){
         System.out.println();
+        System.out.printf("%s's turn\n", _players[_index.index].name);
         System.out.println("Press Enter to roll dice");
-        System.out.println();
     }
 
     @Override
@@ -50,6 +53,7 @@ public class SimpleDiceGameView implements IDiceGameView {
         System.out.println();
     }
 
+
     @Override
     public void outputDiceRollResult(int sum, boolean isEqual) {
         var player = _players[_index.index];
@@ -65,6 +69,19 @@ public class SimpleDiceGameView implements IDiceGameView {
             System.out.println("The dice don't have the same value");
         }
         System.out.println();
+    }
 
+    @Override
+    public void getUserInput() {
+        showInputPrompt();
+
+        _scanner.nextLine();
+    }
+
+    @Override
+    public void outputAllPlayerDetails() {
+        for(int i = 0; i < _players.length; i++){
+            outputPlayerDetails(i);
+        }
     }
 }
