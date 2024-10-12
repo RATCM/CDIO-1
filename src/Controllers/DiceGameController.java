@@ -48,16 +48,13 @@ public class DiceGameController {
     public void applyRules(RollResult result){
         for(var rule: _rules){
             if(rule.isApplicaple(result)){
-                rule.apply(this, result);
+                rule.stage();
                 _view.outputAppliedRule(rule);
             }
         }
-    }
-
-    public void applyRule(GameRule rule, RollResult result){
-        if(rule.isApplicaple(result)){
+        
+        for(var rule: _rules){
             rule.apply(this, result);
-            _view.outputAppliedRule(rule);
         }
     }
 

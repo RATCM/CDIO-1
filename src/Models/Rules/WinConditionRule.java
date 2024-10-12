@@ -15,11 +15,11 @@ public class WinConditionRule extends GameRule {
 
     @Override
     public boolean isApplicaple(RollResult result) {
-        return !getCurrentPlayer().hasWon() && (getCurrentPlayer().getPoints() >= _pointsToWin) && result.isIdentical;
+        return result.sum != 2 && result.isIdentical && (getCurrentPlayer().getPoints() >= _pointsToWin);
     }
 
     @Override
-    public void apply(DiceGameController diceGameState, RollResult unused) {
+    protected void applyRule(DiceGameController diceGameState, RollResult unused) {
         getCurrentPlayer().makePlayerWin();
         diceGameState.makePlayerWin();
     }

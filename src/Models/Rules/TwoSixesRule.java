@@ -13,11 +13,11 @@ public class TwoSixesRule extends GameRule {
 
     @Override
     public boolean isApplicaple(RollResult result) {
-        return !getCurrentPlayer().hasWon() && result.sum == 12 && getCurrentPlayer().getPreviousRoll().sum == 12;
+        return result.sum == 12 && getCurrentPlayer().getPreviousRoll().sum == 12;
     }
 
     @Override
-    public void apply(DiceGameController diceGameState, RollResult unused) {
+    protected void applyRule(DiceGameController diceGameState, RollResult unused) {
         getCurrentPlayer().makePlayerWin();
         diceGameState.makePlayerWin();
     }

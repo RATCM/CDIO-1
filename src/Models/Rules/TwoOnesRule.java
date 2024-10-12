@@ -13,11 +13,11 @@ public class TwoOnesRule extends GameRule {
 
     @Override
     public boolean isApplicaple(RollResult result) {
-        return !getCurrentPlayer().hasWon() && result.sum == 2;
+        return result.sum == 2;
     }
 
     @Override
-    public void apply(DiceGameController diceGameState, RollResult unused) {
+    protected void applyRule(DiceGameController diceGameState, RollResult unused) {
         getCurrentPlayer().resetPoints();
     }
 

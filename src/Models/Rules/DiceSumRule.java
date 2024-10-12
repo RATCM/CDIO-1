@@ -19,7 +19,7 @@ public class DiceSumRule extends GameRule {
     }
 
     @Override
-    public void apply(DiceGameController diceGameState, RollResult result) {
+    protected void applyRule(DiceGameController diceGameState, RollResult result) {
         getCurrentPlayer().grantPoints(result.sum);
     }
 

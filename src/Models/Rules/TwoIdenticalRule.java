@@ -14,12 +14,12 @@ public class TwoIdenticalRule extends GameRule {
     public boolean isApplicaple(RollResult result) {
         // The rules in the vision doesn't explicitly say
         // that the rule doesn't apply if they hit two ones,
-        // but we decided to do so anyway
-        return !getCurrentPlayer().hasWon() && result.isIdentical && result.sum != 2;
+        // but we decided to do so anyway        
+        return result.isIdentical && result.sum != 2;
     }
 
     @Override
-    public void apply(DiceGameController diceGameState, RollResult unused) {
+    protected void applyRule(DiceGameController diceGameState, RollResult unused) {
         diceGameState.grantPlayerExtraTurn();
     }
     
