@@ -52,9 +52,11 @@ public class App {
     }
 
     private static GameRule[] createRules(PlayerController[] playerControllers, PlayerIndexer playerIndex){
+        final int pointsToWin = 40;
+
         return new GameRule[]{
-            new WinConditionRule(playerControllers, playerIndex, 40), // Always check the win condition first
-            new DiceSumRule(playerControllers, playerIndex),
+            new WinConditionRule(playerControllers, playerIndex, pointsToWin), // Always check the win condition first
+            new DiceSumRule(playerControllers, playerIndex, pointsToWin),
             new TwoIdenticalRule(playerControllers, playerIndex),
             new TwoOnesRule(playerControllers, playerIndex),
             new TwoSixesRule(playerControllers, playerIndex)

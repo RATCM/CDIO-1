@@ -6,18 +6,21 @@ import Models.PlayerIndexer;
 import Models.RollResult;
 
 public class DiceSumRule extends GameRule {
-    public DiceSumRule(PlayerController[] playerStates, PlayerIndexer index) {
+    private final int _pointsToWin;
+    public DiceSumRule(PlayerController[] playerStates, PlayerIndexer index, int pointsToWin) {
         super(playerStates, index);
+
+        _pointsToWin = pointsToWin;
     }
 
     @Override
     public boolean isApplicaple(RollResult result) {
-        return result.sum != 2;
+        return result.sum != 2 && getCurrentPlayer().getPoints() < _pointsToWin;
     }
 
     @Override
     public void apply(DiceGameController diceGameState, RollResult result) {
-        playerStates[index.index].grantPoints(result.sum);
+        getCurrentPlayer().grantPoints(result.sum);
     }
 
     @Override
