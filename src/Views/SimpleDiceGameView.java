@@ -101,7 +101,6 @@ public class SimpleDiceGameView implements IDiceGameView {
 
     @Override
     public void outputAppliedRule(GameRule rule) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'outputAppliedRule'");
+        System.out.println(rule.getDescription());
     }
 }
