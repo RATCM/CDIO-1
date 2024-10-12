@@ -10,6 +10,10 @@ import java.util.Scanner;
 // this is because this view is way more simple
 // than the other view classes, and it doesn't
 // need any of the methods in the View class
+/**
+ * Displays a simple dice view in the console, 
+ * should run well on most, if not all terminals
+ */
 public class SimpleDiceGameView implements IDiceGameView {
     private final PlayerModel[] _players;
     private PlayerIndexer _index;

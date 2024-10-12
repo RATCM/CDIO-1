@@ -4,9 +4,11 @@ import Components.CenteredTextComponent;
 import Utils.Color;
 import Utils.Point;
 import Utils.Size;
-import Views.Interfaces.IPlayerView;
 
-public class PlayerView extends View implements IPlayerView {
+/**
+ * Displays player info
+ */
+class PlayerView extends View {
     BoxComponent _playerNameBox1;
     BoxComponent _playerNameBox2;
     CenteredTextComponent _playerNameText;
@@ -88,16 +90,25 @@ public class PlayerView extends View implements IPlayerView {
         _playerPointsText.update();
     }
 
-    @Override
+    /**
+     * Sets the points of the player to the component
+     * @param points
+     */
     public void setPoints(int points){
         _playerPointsText.setText(String.valueOf(points));
     }
 
-    @Override
+    /**
+     * Sets the name of the player to the component
+     * @param name
+     */
     public void setName(String name){
         _playerNameText.setText(name);
     }
 
+    /**
+     * Changed the foregroundColor of the player name
+     */
     public void setNameForegroundColor(Color color){
         _playerNameText.forgroundColor = color;
     }

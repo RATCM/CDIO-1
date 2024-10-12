@@ -5,6 +5,9 @@ import Utils.Point;
 import Utils.Size;
 import Utils.Color;
 
+/**
+ * This displays a region filled with some character
+ */
 public class BoxComponent extends Component {
     private char _fillChar;
 

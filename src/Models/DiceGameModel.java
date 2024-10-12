@@ -9,6 +9,13 @@ public class DiceGameModel {
         d2 = new DieModel();
     }
 
+    
+    
+    /** 
+     * <p> This method rolls the dice
+     * 
+     * @return The result of the roll
+     */
     public RollResult rollDices(){
         d1.roll();
         d2.roll();

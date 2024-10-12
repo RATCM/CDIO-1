@@ -5,6 +5,14 @@ import Utils.Console;
 import Utils.Point;
 import Utils.Size;
 
+/**
+ * <p> This is a similar to {@link Components.RawTextComponent},
+ * <p> but it fits the text inside it's range
+ * 
+ * <p> This class is currentley deprecates, so use
+ * <p> {@link Components.RawTextComponent} or {@link Components.CenteredTextComponent} instead
+ * @deprecated
+ */
 public class TextComponent extends Component{
     private String _text;
 

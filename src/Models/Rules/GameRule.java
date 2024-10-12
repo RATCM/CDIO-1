@@ -5,6 +5,9 @@ import Controllers.PlayerController;
 import Models.PlayerIndexer;
 import Models.RollResult;
 
+/**
+ * Represents an abstract game rule
+ */
 public abstract class GameRule {
     protected PlayerController[] playerStates;
     protected PlayerIndexer index;
@@ -16,17 +19,39 @@ public abstract class GameRule {
         staged = false;
     }
     
+    /** 
+     * This method returns the current {@link Controllers.PlayerController} in use
+     * 
+     * @return PlayerController
+     */
     protected PlayerController getCurrentPlayer(){
         return playerStates[index.index];
     }
     
-
+    /** 
+     * Validates a rule
+     * 
+     * @param result the result of a dice roll
+     * @return true is the rule is applicaple, otherwise false
+     */
     public abstract boolean isApplicaple(RollResult result);
-    protected abstract void applyRule(DiceGameController diceGameState, RollResult result);
 
-    // You call thie method to apply the rule
-    // The reason why we don't just do it in the abstract
-    // method is beacuase of the D.R.Y. principle
+    /** 
+     * <p> This method contains the actual logic for how the rule is applied.
+     * <p> This shouldn't be called anywhere outside of this class
+     * 
+     * @param diceGameState the DiceGameController
+     * @param result the result of a dice roll
+     */
+    protected abstract void applyRule(DiceGameController diceGameState, RollResult result);
+    
+    /** 
+     * <p> This method applies the rule for the {@link Controllers.DiceGameController} if the rule has been staged.
+     * <p> The rule gets unstaged after this method is called
+     *
+     * @param diceGameState the DiceGameController
+     * @param result the result of a dice roll
+     */
     public final void apply(DiceGameController diceGameState, RollResult result){
         if(staged){
             applyRule(diceGameState, result);
@@ -34,10 +59,20 @@ public abstract class GameRule {
         staged = false;
     }
 
+    /** 
+     * <p> This stages the rule to be applied  after {@link #apply} is called
+     */
     public void stage(){
         staged = true;
     }
 
+    /** 
+     * @return A description of when the rule is applied
+     */
     public abstract String getConditionDescription();
+
+    /** 
+     * @return A description of what the rule does when applied
+     */
     public abstract String getDescription();
 }

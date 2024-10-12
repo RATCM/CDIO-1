@@ -7,7 +7,10 @@ import Utils.Color;
 import Utils.Point;
 import Utils.Size;
 
-public class DiceThrowResultView extends View{
+/**
+ * Displays the result of a dice throw
+ */
+class DiceThrowResultView extends View {
     private BoxComponent _outerBox;
     private BoxComponent _innerBox;
 
@@ -22,9 +25,16 @@ public class DiceThrowResultView extends View{
         initializeView();
     }
 
+    /**
+     * Writes the result of the dice throw to the components
+     * 
+     * @param player the player who had thrown the dice
+     * @param result the result of the dice throw
+     */
     public void setResult(PlayerModel player, RollResult result){
         _resultPlayer.setText(String.format("Player: [%s]", player.name));
         _resultSum.setText(String.format("Sum: [%s]", result.sum));
+
         if(result.isIdentical){
             _resultIsIdentical.setText("The dice are identical");
         }
@@ -33,6 +43,10 @@ public class DiceThrowResultView extends View{
         }
     }
 
+    /**
+     * <p> Only updates the result components instead of all of them
+     * <p> This should be more performant than {@link #update()}
+     */
     public void updateResult(){
         _resultLabel.update();
         _resultPlayer.update();

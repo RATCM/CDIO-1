@@ -5,6 +5,9 @@ import Utils.Point;
 import Utils.Size;
 import Utils.Color;
 
+/**
+ * This displays centered text
+ */
 public class CenteredTextComponent extends RawTextComponent {
 
     public CenteredTextComponent(Point location, Size size, String text) {

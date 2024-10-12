@@ -5,6 +5,9 @@ import Utils.Console;
 import Utils.Point;
 import Utils.Size;
 
+/**
+ * This represents an abstract component
+ */
 public abstract class Component {
     public final Point location;
     public final Size size;
@@ -25,6 +28,9 @@ public abstract class Component {
         this.forgroundColor = foregroundColor;
     }
 
+    /**
+     * Clears the entire component
+     */
     public void clearComponent(){
         var str = " ".repeat(size.width);
         for(int y = location.y; y < location.y + size.height; y++){
@@ -32,5 +38,9 @@ public abstract class Component {
             System.out.println(str);
         }
     }
+
+    /**
+     * Updates the component and displays it
+     */
     public abstract void update();
 }

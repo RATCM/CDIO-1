@@ -5,6 +5,10 @@ import Utils.Console;
 import Utils.Point;
 import Utils.Size;
 
+/**
+ * <p> This represents raw text, i.e.
+ * <p> text that doesn't have any fancy beaviour
+ */
 public class RawTextComponent extends Component{
     private String _text;
 
@@ -18,10 +22,18 @@ public class RawTextComponent extends Component{
         this._text = text;
     }
 
+    /**
+     * Sets the text to the component
+     * @param text
+     */
     public void setText(String text){
         _text = text;
     }
 
+    /**
+     * Gets the text from the component
+     * @return the text inside the component
+     */
     public String getText(){
         return _text;
     }
