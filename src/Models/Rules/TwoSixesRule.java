@@ -21,4 +21,14 @@ public class TwoSixesRule extends GameRule {
         getCurrentPlayer().makePlayerWin();
         diceGameState.makePlayerWin();
     }
+
+    @Override
+    public String getConditionDescription() {
+        return "The player hits two sixes, two times in a row";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Player wins";
+    }
 }

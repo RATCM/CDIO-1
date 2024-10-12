@@ -6,16 +6,12 @@ import Models.PlayerIndexer;
 import Models.RollResult;
 
 public class DiceSumRule extends GameRule {
-
     public DiceSumRule(PlayerController[] playerStates, PlayerIndexer index) {
         super(playerStates, index);
     }
 
-    //private RollResult _result;
-
     @Override
     public boolean isApplicaple(RollResult result) {
-        //_result = result;
         return result.sum != 2;
     }
 
@@ -23,4 +19,15 @@ public class DiceSumRule extends GameRule {
     public void apply(DiceGameController diceGameState, RollResult result) {
         playerStates[index.index].grantPoints(result.sum);
     }
+
+    @Override
+    public String getConditionDescription() {
+        return "The dice are not two ones";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Sum of dice gets added to player";
+    }
+
 }

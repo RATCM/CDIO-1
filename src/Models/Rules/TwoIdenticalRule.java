@@ -22,4 +22,14 @@ public class TwoIdenticalRule extends GameRule {
     public void apply(DiceGameController diceGameState, RollResult unused) {
         diceGameState.grantPlayerExtraTurn();
     }
+    
+    @Override
+    public String getConditionDescription() {
+        return "The dice values are equal and not 1";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Player gets an extra turn";
+    }
 }

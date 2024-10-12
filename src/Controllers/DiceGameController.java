@@ -49,6 +49,7 @@ public class DiceGameController {
         for(var rule: _rules){
             if(rule.isApplicaple(result)){
                 rule.apply(this, result);
+                _view.outputAppliedRule(rule);
             }
         }
     }
@@ -56,6 +57,7 @@ public class DiceGameController {
     public void applyRule(GameRule rule, RollResult result){
         if(rule.isApplicaple(result)){
             rule.apply(this, result);
+            _view.outputAppliedRule(rule);
         }
     }
 

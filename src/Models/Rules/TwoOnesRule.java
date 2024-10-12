@@ -20,4 +20,14 @@ public class TwoOnesRule extends GameRule {
     public void apply(DiceGameController diceGameState, RollResult unused) {
         getCurrentPlayer().resetPoints();
     }
+
+    @Override
+    public String getConditionDescription() {
+        return "The dice are two ones";
+    }
+    @Override
+    public String getDescription() {
+        return "Player loses all points";
+    }
+    
 }

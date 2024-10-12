@@ -1,5 +1,7 @@
 package Views.Interfaces;
 
+import Models.Rules.GameRule;
+
 public interface IDiceGameView {
     void getUserInput();
     void outputPlayerDetails();
@@ -7,4 +9,5 @@ public interface IDiceGameView {
     void outputAllPlayerDetails();
     void outputDiceRollResult(int sum, boolean isEqual);
     void outputWinningPlayer();
+    void outputAppliedRule(GameRule rule);
 }

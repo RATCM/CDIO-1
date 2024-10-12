@@ -6,6 +6,7 @@ import Components.RawTextComponent;
 import Models.PlayerIndexer;
 import Models.PlayerModel;
 import Models.RollResult;
+import Models.Rules.GameRule;
 import Utils.Color;
 import Utils.Console;
 import Utils.Point;
@@ -18,15 +19,19 @@ import java.util.Scanner;
 public class VisualDiceGameView extends View implements IDiceGameView {
     private PlayerIndexer _currentSelectedPlayer;
     private final PlayerModel[] _players;
-    private AllPlayersView  _allPlayersView;
+    
     private RawTextComponent _gameTitleText;
+    private AllPlayersView  _allPlayersView;
     private DiceThrowResultView _diceThrowResultView;
+    private AppliedRuleView _appliedRuleView;
+
     private Scanner _scanner;
+
 
     public VisualDiceGameView(PlayerModel[] players, PlayerIndexer index, Scanner scanner){
         // For now we just assume there are only two players,
         // hence the fixed size.
-        super(new Point(1,1),new Size(60, 40));
+        super(new Point(1,1),new Size(60, 50));
 
         // I'm using an array for players even,
         // tough there are only two players because
@@ -128,25 +133,35 @@ public class VisualDiceGameView extends View implements IDiceGameView {
         _allPlayersView.update();
         _gameTitleText.update();
         _diceThrowResultView.update();
+        _appliedRuleView.update();
     }
 
     // This sets up all the components and sub-views
     @Override
     protected final void initializeView() {
-        _gameTitleText = new RawTextComponent(new Point(7, 1), new Size(60,15), gameTitleText(), Color.Black, Color.Blue);
+        _gameTitleText = new RawTextComponent(new Point(1, 1), new Size(50,15), gameTitleText(), Color.Black, Color.Blue);
         
         int widthAllPlayersView = 25 * (_players.length-1);
         widthAllPlayersView += _players[_players.length-1].name.length() + 6;
 
-        _allPlayersView = new AllPlayersView(new Point(5,20), new Size(widthAllPlayersView, 10), _players);
+        Point locAllPlayersView = new Point(
+            _gameTitleText.location.x + _gameTitleText.size.width/2 - widthAllPlayersView/2,
+            _gameTitleText.location.y + _gameTitleText.size.height + 5);
 
-        Point locDiceThrowView = new Point(_allPlayersView.location.x, _allPlayersView.location.y + _allPlayersView.size.height + 3);
+        //_allPlayersView = new AllPlayersView(new Point(5,20), new Size(widthAllPlayersView, 10), _players);
+        _allPlayersView = new AllPlayersView(locAllPlayersView, new Size(widthAllPlayersView, 10), _players);
+
+        Point locDiceThrowView = new Point(_allPlayersView.location.x, _allPlayersView.location.y + _allPlayersView.size.height + 1);
         _diceThrowResultView = new DiceThrowResultView(locDiceThrowView, _allPlayersView.size.width);
 
         for(int i = 0; i < _players.length; i++){
             _allPlayersView.setPoints(i,0);
             _allPlayersView.setName(i, _players[i].name);
         }
+
+        Point locRuleView = new Point(_diceThrowResultView.location.x, _diceThrowResultView.location.y + _diceThrowResultView.size.height+1);
+        Size sizeRuleView = new Size(_diceThrowResultView.size.width, 5);
+        _appliedRuleView = new AppliedRuleView(locRuleView, sizeRuleView);
 
         highlightSelectedPlayer();
 
@@ -193,5 +208,10 @@ public class VisualDiceGameView extends View implements IDiceGameView {
         boxOuter.update();
         boxInner.update();
         winText.update();
+    }
+
+    @Override
+    public void outputAppliedRule(GameRule rule) {
+        _appliedRuleView.addAppliedRule(rule);
     }
 }

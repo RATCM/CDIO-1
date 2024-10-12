@@ -2,6 +2,7 @@ package Views;
 
 import Models.PlayerIndexer;
 import Models.PlayerModel;
+import Models.Rules.GameRule;
 import Views.Interfaces.IDiceGameView;
 import java.util.Scanner;
 
@@ -96,5 +97,11 @@ public class SimpleDiceGameView implements IDiceGameView {
         
         System.out.println();
         System.out.println("[" + winningPlayer.name + "] has won!");
+    }
+
+    @Override
+    public void outputAppliedRule(GameRule rule) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'outputAppliedRule'");
     }
 }

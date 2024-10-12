@@ -23,4 +23,15 @@ public class WinConditionRule extends GameRule {
         getCurrentPlayer().makePlayerWin();
         diceGameState.makePlayerWin();
     }
+    
+    @Override
+    public String getConditionDescription() {
+        return "Player has " + this._pointsToWin + " points and the dice values are equal";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Player wins";
+    }
+
 }

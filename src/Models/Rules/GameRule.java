@@ -21,4 +21,7 @@ public abstract class GameRule {
 
     public abstract boolean isApplicaple(RollResult result);
     public abstract void apply(DiceGameController diceGameState, RollResult result);
+
+    public abstract String getConditionDescription();
+    public abstract String getDescription();
 }
