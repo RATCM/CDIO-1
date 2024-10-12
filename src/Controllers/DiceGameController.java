@@ -14,6 +14,7 @@ public class DiceGameController {
     public final int numberOfPlayers;
     private PlayerIndexer _currentPlayerIndex;
     private boolean _playerHasExtraTurn;
+    private boolean _playerHasWon;
 
     public DiceGameController(DiceGameModel model, IDiceGameView view, GameRule[] rules, PlayerIndexer playerIndex){
         _model = model;
@@ -23,6 +24,7 @@ public class DiceGameController {
         numberOfPlayers = 2;
         _currentPlayerIndex = playerIndex;
         _playerHasExtraTurn = false;
+        _playerHasWon = false;
     }
 
     public void switchToPlayer(int index){
@@ -67,5 +69,17 @@ public class DiceGameController {
 
     public void getUserInput(){
         _view.getUserInput();
+    }
+
+    RollResult rollDice(){
+        return _model.rollDices();
+    }
+
+    public void makePlayerWin(){
+        _playerHasWon = true;
+    }
+
+    public boolean somePlayerHasWon(){
+        return _playerHasWon;
     }
 }

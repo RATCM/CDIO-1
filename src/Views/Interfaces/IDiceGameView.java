@@ -6,4 +6,5 @@ public interface IDiceGameView {
     void outputPlayerDetails(int index);
     void outputAllPlayerDetails();
     void outputDiceRollResult(int sum, boolean isEqual);
+    void outputWinningPlayer();
 }

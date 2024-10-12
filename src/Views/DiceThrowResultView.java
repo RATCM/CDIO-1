@@ -3,6 +3,7 @@ package Views;
 import Components.*;
 import Models.RollResult;
 import Models.PlayerModel;
+import Utils.Color;
 import Utils.Point;
 import Utils.Size;
 
@@ -16,7 +17,7 @@ public class DiceThrowResultView extends View{
     private CenteredTextComponent _resultIsIdentical;
 
     public DiceThrowResultView(Point location, int width) {
-        super(location, new Size(width, 6)); // The height is fixed for now
+        super(location, new Size(width, 7)); // The height is fixed for now
 
         initializeView();
     }
@@ -58,23 +59,28 @@ public class DiceThrowResultView extends View{
         Point locLabel = new Point(locInner.x, locInner.y);
         Size sizeLabel = new Size(sizeInner.width, 1);
 
-        Point locPlayer = new Point(locInner.x, locInner.y+1);
-        Size sizePlayer = new Size(sizeInner.width, 1);
+        // We assign the points from the bottom up here
+        Point topLeftInner = new Point(locInner.x, locInner.y);
+        Point bottomRightInner = new Point(locInner.x+sizeInner.width, locInner.y+sizeInner.height);
 
-        // Bellow player
-        Point locSum = new Point(locInner.x, locPlayer.y+1); 
-        Size sizeSum = new Size(sizeInner.width, 1);
-
-        // Bellow sum
-        Point locIdentical = new Point(locInner.x, locSum.y+1);
+        // Bottom
+        Point locIdentical = new Point(topLeftInner.x, bottomRightInner.y-1);
         Size sizeIdentical = new Size(sizeInner.width, 1);
 
-        _outerBox = new BoxComponent(locOuter, sizeOuter, '#');
+        // Middle
+        Point locSum = new Point(topLeftInner.x, bottomRightInner.y-2); 
+        Size sizeSum = new Size(sizeInner.width, 1);
+        
+        // Top
+        Point locPlayer = new Point(topLeftInner.x, bottomRightInner.y-3);
+        Size sizePlayer = new Size(sizeInner.width, 1);
+
+        _outerBox = new BoxComponent(locOuter, sizeOuter, '#', Color.None, Color.Cyan);
         _innerBox = new BoxComponent(locInner, sizeInner, ' ');
 
-        _resultLabel = new CenteredTextComponent(locLabel, sizeLabel, "<Dice throw result>");
-        _resultPlayer = new CenteredTextComponent(locPlayer, sizePlayer, "");
-        _resultSum = new CenteredTextComponent(locSum, sizeSum, "");
-        _resultIsIdentical = new CenteredTextComponent(locIdentical, sizeIdentical, "");
+        _resultLabel = new CenteredTextComponent(locLabel, sizeLabel, "<Dice throw result>", Color.None, Color.Blue);
+        _resultPlayer = new CenteredTextComponent(locPlayer, sizePlayer, "", Color.None, Color.Green);
+        _resultSum = new CenteredTextComponent(locSum, sizeSum, "", Color.None, Color.Green);
+        _resultIsIdentical = new CenteredTextComponent(locIdentical, sizeIdentical, "", Color.None, Color.Green);
     }
 }

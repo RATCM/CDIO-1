@@ -1,5 +1,7 @@
 package Views;
 
+import Components.BoxComponent;
+import Components.CenteredTextComponent;
 import Components.RawTextComponent;
 import Models.PlayerIndexer;
 import Models.PlayerModel;
@@ -169,5 +171,27 @@ public class VisualDiceGameView extends View implements IDiceGameView {
             _allPlayersView.setPoints(i, curPlayer.points);
         }
         update();
+    }
+
+    @Override
+    public void outputWinningPlayer() {
+        clearView();
+
+        // Java will complain if we don't initialize it.
+        PlayerModel winningPlayer = _players[0];
+
+        for(int i = 0; i < _players.length; i++){
+            if(_players[i].getHasPlayerWon()){
+                winningPlayer = _players[i];
+            }
+        }
+
+        var boxOuter = new BoxComponent(location, size, '#', Color.None, Color.Blue);
+        var boxInner = new BoxComponent(new Point(location.x+3, location.y+3), new Size(size.width-6,size.height-6), ' ');
+        var winText = new CenteredTextComponent(boxInner.location, boxInner.size, winningPlayer.name + " has won!", Color.None, Color.Yellow);
+
+        boxOuter.update();
+        boxInner.update();
+        winText.update();
     }
 }

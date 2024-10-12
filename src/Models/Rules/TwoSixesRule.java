@@ -19,5 +19,6 @@ public class TwoSixesRule extends GameRule {
     @Override
     public void apply(DiceGameController diceGameState, RollResult unused) {
         getCurrentPlayer().makePlayerWin();
+        diceGameState.makePlayerWin();
     }
 }

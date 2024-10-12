@@ -25,11 +25,11 @@ public class PlayerController {
         _lastRoll = new RollResult(-1, false);
     }
 
-    public RollResult roll(DiceGameModel diceGame){
+    public RollResult roll(DiceGameController diceGame){
         if(!rolls.isEmpty()){
             _lastRoll = rolls.get(0);
         }
-        var result = diceGame.rollDices();
+        var result = diceGame.rollDice();
         rolls.add(result);
 
         _view.outputDiceRollResult(result.sum, result.isIdentical);
@@ -65,6 +65,7 @@ public class PlayerController {
 
     public void makePlayerWin(){
         _player.makePlayerWin();
+        _view.outputWinningPlayer();
     }
 
     public boolean hasWon(){

@@ -97,10 +97,11 @@ public class VisualMainMenuView extends View implements IMainMenuView {
         Size sizeInputLabel = new Size(sizeInnerBox.width, 1);
         Point locInputLabel = new Point(locInnerBox.x, locInnerBox.y);
 
-        _titleText = new RawTextComponent(locTitle, sizeTitle, menuTitleText(), Color.None, Color.Blue);
-        _outerInputBox = new BoxComponent(locOuterBox, sizeOuterBox, '#');
+        _outerInputBox = new BoxComponent(locOuterBox, sizeOuterBox, '#', Color.None, Color.Cyan);
         _innerInputBox = new BoxComponent(locInnerBox, sizeInnerBox, ' ');
-        _inputLabel = new CenteredTextComponent(locInputLabel, sizeInputLabel, ":Write player name:");
+        _titleText = new RawTextComponent(locTitle, sizeTitle, menuTitleText(), Color.None, Color.Blue);
+
+        _inputLabel = new CenteredTextComponent(locInputLabel, sizeInputLabel, ":Enter name:", Color.None, Color.Blue);
 
         update();
     }

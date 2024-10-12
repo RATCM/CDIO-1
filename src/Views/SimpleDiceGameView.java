@@ -84,4 +84,17 @@ public class SimpleDiceGameView implements IDiceGameView {
             outputPlayerDetails(i);
         }
     }
+
+    @Override
+    public void outputWinningPlayer() {
+        PlayerModel winningPlayer = _players[0];
+        for(var player: _players){
+            if(player.getHasPlayerWon()){
+                winningPlayer = player;
+            }
+        }
+        
+        System.out.println();
+        System.out.println("[" + winningPlayer.name + "] has won!");
+    }
 }

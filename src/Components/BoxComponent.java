@@ -3,6 +3,7 @@ package Components;
 import Utils.Console;
 import Utils.Point;
 import Utils.Size;
+import Utils.Color;
 
 public class BoxComponent extends Component {
     private char _fillChar;
@@ -11,6 +12,12 @@ public class BoxComponent extends Component {
         super(location, size);
         this._fillChar = fillChar;
     }
+
+    public BoxComponent(Point location, Size size, char fillChar, Color backgroundColor, Color foregroundColor) {
+        super(location, size, backgroundColor, foregroundColor);
+        this._fillChar = fillChar;
+    }
+
 
     @Override
     public void update() {

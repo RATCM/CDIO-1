@@ -34,7 +34,9 @@ public class PlayerView extends View implements IPlayerView {
             new BoxComponent(
                 this.location,
                 new Size(size.width, size.height/2),
-                '#');
+                '#',
+                Color.None,
+                Color.Cyan);
 
         _playerNameBox2 =
             new BoxComponent(
@@ -46,14 +48,18 @@ public class PlayerView extends View implements IPlayerView {
             new CenteredTextComponent(
                 _playerNameBox2.location,
                 _playerNameBox2.size,
-                "");
+                "",
+                Color.None,
+                Color.Green);
 
 
         _playerPointsBox1 =
             new BoxComponent(
                 Point.Add(this.location, new Point(0,_playerNameBox1.size.height)),
                 new Size(size.width, size.height/2),
-                '#');
+                '#',
+                Color.None,
+                Color.Cyan);
 
         _playerPointsBox2 =
         new BoxComponent(
@@ -65,7 +71,9 @@ public class PlayerView extends View implements IPlayerView {
             new CenteredTextComponent(
                 _playerPointsBox2.location,
                 _playerPointsBox2.size,
-                "0");
+                "0",
+                Color.None,
+                Color.Green);
     }
 
     @Override
@@ -82,22 +90,12 @@ public class PlayerView extends View implements IPlayerView {
 
     @Override
     public void setPoints(int points){
-        var str = String.valueOf(points);
-
-        _playerPointsText =
-            new CenteredTextComponent(
-                _playerPointsText.location,
-                _playerPointsText.size,
-                str);
+        _playerPointsText.setText(String.valueOf(points));
     }
 
     @Override
     public void setName(String name){
-        _playerNameText =
-            new CenteredTextComponent(
-                _playerNameText.location,
-                _playerNameText.size,
-                name);
+        _playerNameText.setText(name);
     }
 
     public void setNameForegroundColor(Color color){
