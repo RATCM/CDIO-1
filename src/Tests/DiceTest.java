@@ -75,7 +75,7 @@ public class DiceTest {
         return s_v_ ;
     }
 
-    // Java complains that the variable s_v_ is redundant.
+    // Java complains that the variable mean is redundant.
     // But I think it makes sense to do that in this instance
     // for clarity reasons.
     @SuppressWarnings("All")
