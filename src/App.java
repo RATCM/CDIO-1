@@ -1,6 +1,7 @@
 import Controllers.*;
 import Models.*;
 import Models.Rules.*;
+import Tests.DiceTest;
 import Utils.Console;
 import Views.*;
 import Views.Interfaces.*;
@@ -17,7 +18,17 @@ public class App {
         IDiceGameView diceGameView;
         IMainMenuView mainMenuView;
         PlayerModel[] players;
-        if(args.length > 0 && args[0].equals("simple")){
+
+        // Check if the args wants us to test the program
+        if(args.length > 0 && args[0].equals("probabilityTest")){
+            DiceTest.diceSixTest();
+            return;
+        }
+        else if(args.length > 0 && args[0].equals("timeTest")){
+            DiceTest.diceTimeTest();
+            return;
+        }
+        else if(args.length > 0 && args[0].equals("simple")){
             // The simple view:
             mainMenuView = getSimpleMainMenuView(scanner);
             players = getPlayersFromUserInput(mainMenuView);
@@ -26,7 +37,7 @@ public class App {
             // it to the screen
             diceGameView = createSimpleGameView(players, playerIndex, scanner);
         }
-        else {
+        else if (args.length == 0){
             // The visual view:
             mainMenuView = getVisualMainMenuView(scanner);
             players = getPlayersFromUserInput(mainMenuView);
@@ -34,6 +45,11 @@ public class App {
             // Creates the dice game view and outputs
             // it to the screen
             diceGameView = createVisualDiceGameView(players, playerIndex, scanner);
+        }
+        else {
+            // The program doesn't recognize the argument
+            System.out.println("Invalid argument, exiting program");
+            return;
         }
 
         var playerControllers = createPlayerControllers(players, diceGameView);
