@@ -211,6 +211,8 @@ public class VisualDiceGameView extends View implements IDiceGameView {
         boxOuter.update();
         boxInner.update();
         winText.update();
+
+        Console.setCursorPosition(new Utils.Point(1, 50));
     }
 
     @Override

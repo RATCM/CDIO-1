@@ -9,15 +9,32 @@ public class App {
     public static void main(String[] args){
         PlayerIndexer playerIndex = new PlayerIndexer(0);
         var scanner = new java.util.Scanner(System.in);
-        
+
+
         // Opens the main menu
         // Prompts the players to enter their initials
         // and continues afterward
-        var players = getPlayersFromUserInput(scanner);
-        
-        // Creates the dice game view and outputs
-        // it to the screen
-        var diceGameView = createDiceGameView(players, playerIndex, scanner);
+        IDiceGameView diceGameView;
+        IMainMenuView mainMenuView;
+        PlayerModel[] players;
+        if(args.length > 0 && args[0].equals("simple")){
+            // The simple view:
+            mainMenuView = getSimpleMainMenuView(scanner);
+            players = getPlayersFromUserInput(mainMenuView);
+
+            // Creates the dice game view and outputs
+            // it to the screen
+            diceGameView = createSimpleGameView(players, playerIndex, scanner);
+        }
+        else {
+            // The visual view:
+            mainMenuView = getVisualMainMenuView(scanner);
+            players = getPlayersFromUserInput(mainMenuView);
+
+            // Creates the dice game view and outputs
+            // it to the screen
+            diceGameView = createVisualDiceGameView(players, playerIndex, scanner);
+        }
 
         var playerControllers = createPlayerControllers(players, diceGameView);
         
@@ -29,14 +46,21 @@ public class App {
         runGameLoop(diceGameController, playerControllers, playerIndex);
     }
 
-    private static PlayerModel[] getPlayersFromUserInput(java.util.Scanner scanner){
-        IMainMenuView view = new VisualMainMenuView(new Utils.Point(1,1), scanner);
+    private static PlayerModel[] getPlayersFromUserInput(IMainMenuView view){
         var mainMenuController = new MainMenuController(view);
 
         var players = mainMenuController.getPlayers(2);
         mainMenuController.startGame();
 
         return players;
+    }
+
+    private static IMainMenuView getVisualMainMenuView(java.util.Scanner scanner){
+        return new VisualMainMenuView(new Utils.Point(1,1), scanner);
+    }
+
+    private static IMainMenuView getSimpleMainMenuView(java.util.Scanner scanner){
+        return new SimpleMainMenuView(scanner);
     }
 
     private static PlayerController[] createPlayerControllers(PlayerModel[] players, IDiceGameView view){
@@ -64,8 +88,12 @@ public class App {
     }
 
 
-    private static IDiceGameView createDiceGameView(PlayerModel[] players, PlayerIndexer playerIndex, java.util.Scanner scanner){
+    private static IDiceGameView createVisualDiceGameView(PlayerModel[] players, PlayerIndexer playerIndex, java.util.Scanner scanner){
         return new VisualDiceGameView(players, playerIndex, scanner);
+    }
+
+    private static IDiceGameView createSimpleGameView(PlayerModel[] players, PlayerIndexer playerIndex, java.util.Scanner scanner){
+        return new SimpleDiceGameView(players, playerIndex, scanner);
     }
 
     private static DiceGameController createDiceGameController(IDiceGameView view, GameRule[] rules, PlayerIndexer playerIndex){
@@ -93,7 +121,5 @@ public class App {
             // This does nothing if the TwoIdenticalRule/rules[1] is applied
             diceGameController.switchToNextPlayer();
         }
-
-        Console.setCursorPosition(new Utils.Point(1, 50));
     }
 }
