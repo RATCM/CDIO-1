@@ -2,7 +2,7 @@ package Models;
 
 public class DieModel {
     private int _value;
-    private java.util.Random _rng;
+    private final java.util.Random _rng;
 
     public DieModel(){
         _value = -1; // We set the default value to -1

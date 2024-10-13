@@ -6,11 +6,11 @@ public class Console {
 
     /**
      * Sets the cursor position in the terminal to some new location
-     * @param location
+     * @param location the new location
      */
     public static void setCursorPosition(Point location){
         char escCode = 0x1B;
-        System.out.print(String.format("%c[%d;%df", escCode, location.y, location.x));
+        System.out.printf("%c[%d;%df", escCode, location.y, location.x);
     }
 
     // Code from:
@@ -27,8 +27,12 @@ public class Console {
     // https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
     /**
      * Sets the foreground/text color in the terminal to some new color
-     * @param color
+     * @param color the new text color
      */
+    // Java wants to convert the switch statement to an
+    // "enhanced switch", we shouldn't do that because it's,
+    // not compatible with older java versions.
+    @SuppressWarnings("All")
     public static void setForegroundColor(Color color){
         String esc;
         switch(color){
@@ -68,8 +72,12 @@ public class Console {
     // https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
     /**
      * Sets the background color of the text, in the terminal to some new color
-     * @param color
+     * @param color the new background color
      */
+    // Java wants to convert the switch statement to an
+    // "enhanced switch", we shouldn't do that because it's,
+    // not compatible with older java versions.
+    @SuppressWarnings("All")
     public static void setBackgroundColor(Color color){
         String esc;
         switch(color){
@@ -115,10 +123,10 @@ public class Console {
     }
 
     /**
-     * Clears the range between {@link point1} and {@link point2}
+     * Clears the range between {@link Utils.Point point1} and {@link Utils.Point point2}
      * 
-     * @param point1
-     * @param point2
+     * @param point1 the first point
+     * @param point2 the second point
      */
     public static void clearRange(Point point1, Point point2){
         // Make sure point1 is in top left and point2 is in the bottom right

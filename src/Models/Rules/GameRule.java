@@ -69,6 +69,8 @@ public abstract class GameRule {
     /** 
      * @return A description of when the rule is applied
      */
+    // Java complains that this method is unused.
+    @SuppressWarnings("unused")
     public abstract String getConditionDescription();
 
     /** 

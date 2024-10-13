@@ -18,12 +18,12 @@ class AppliedRuleView extends View {
     private CenteredTextComponent _labelText;
     private RawTextComponent _textRules;
 
-    private java.util.ArrayList<GameRule> _rulesToDisplay;
+    private final java.util.ArrayList<GameRule> _rulesToDisplay;
 
     public AppliedRuleView(Point location, Size size) {
         super(location, size);
 
-        _rulesToDisplay = new java.util.ArrayList<GameRule>();
+        _rulesToDisplay = new java.util.ArrayList<>();
         initializeView();
     }
 

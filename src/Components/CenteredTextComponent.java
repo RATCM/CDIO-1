@@ -10,6 +10,9 @@ import Utils.Color;
  */
 public class CenteredTextComponent extends RawTextComponent {
 
+    // Java needs to stop complaining that an optional
+    // constructor isn't used.
+    @SuppressWarnings("unused")
     public CenteredTextComponent(Point location, Size size, String text) {
         super(location, size, text);
     }

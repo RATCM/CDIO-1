@@ -7,7 +7,7 @@ import Models.PlayerModel;
  * This controls the {@link Views.Interfaces.IMainMenuView} view.
  */
 public class MainMenuController {
-    private IMainMenuView _view;
+    private final IMainMenuView _view;
 
     public MainMenuController(IMainMenuView view){
         _view = view;

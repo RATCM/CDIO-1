@@ -24,7 +24,7 @@ public class RawTextComponent extends Component{
 
     /**
      * Sets the text to the component
-     * @param text
+     * @param text the next text
      */
     public void setText(String text){
         _text = text;

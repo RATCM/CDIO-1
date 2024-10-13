@@ -2,8 +2,9 @@ package Views;
 
 import Views.Interfaces.IMainMenuView;
 
+@SuppressWarnings("unused")
 public class SimpleMainMenuView implements IMainMenuView {
-    private java.util.Scanner _scanner;
+    private final java.util.Scanner _scanner;
 
     public SimpleMainMenuView(java.util.Scanner scanner){
         _scanner = scanner;

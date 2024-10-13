@@ -16,8 +16,9 @@ import java.util.Scanner;
 
 // This class is essentialy the view for the "Good UI".
 // I.e it has a GUI with colored text and a pretty layout.
+@SuppressWarnings("unused")
 public class VisualDiceGameView extends View implements IDiceGameView {
-    private PlayerIndexer _currentSelectedPlayer;
+    private final PlayerIndexer _currentSelectedPlayer;
     private final PlayerModel[] _players;
     
     private RawTextComponent _gameTitleText;
@@ -25,7 +26,7 @@ public class VisualDiceGameView extends View implements IDiceGameView {
     private DiceThrowResultView _diceThrowResultView;
     private AppliedRuleView _appliedRuleView;
 
-    private Scanner _scanner;
+    private final Scanner _scanner;
 
 
     public VisualDiceGameView(PlayerModel[] players, PlayerIndexer index, Scanner scanner){
@@ -43,10 +44,12 @@ public class VisualDiceGameView extends View implements IDiceGameView {
         initializeView();
     }
 
+    // Some java versions gives an annoying warning here
+    @SuppressWarnings("All")
     // This should essentially behave as a constant string
     // Its probably bad idea to have this hard-coded, and
     // you would probably rather have this text stored in a file.
-    private final String gameTitleText(){
+    private String gameTitleText(){
         // Ascii art made using:
         // https://patorjk.com/software/taag/
         return
@@ -195,9 +198,9 @@ public class VisualDiceGameView extends View implements IDiceGameView {
         // Java will complain if we don't initialize it.
         PlayerModel winningPlayer = _players[0];
 
-        for(int i = 0; i < _players.length; i++){
-            if(_players[i].getHasPlayerWon()){
-                winningPlayer = _players[i];
+        for (PlayerModel player : _players) {
+            if (player.getHasPlayerWon()) {
+                winningPlayer = player;
             }
         }
 

@@ -12,12 +12,12 @@ import Views.Interfaces.IDiceGameView;
  * <p> It essentially contains the state of the dice game.
  */
 public class DiceGameController {
-    private DiceGameModel _model;
-    private IDiceGameView _view;
-    private GameRule[] _rules;
+    private final DiceGameModel _model;
+    private final IDiceGameView _view;
+    private final GameRule[] _rules;
     
     public final int numberOfPlayers;
-    private PlayerIndexer _currentPlayerIndex;
+    private final PlayerIndexer _currentPlayerIndex;
     private boolean _playerHasExtraTurn;
     private boolean _playerHasWon;
 
@@ -36,6 +36,8 @@ public class DiceGameController {
      * Changes the {@link Models.PlayerIndexer} field
      * @param index new index
      */
+    // We generally shouldn't use this method.
+    @Deprecated
     public void switchToPlayer(int index){
         _currentPlayerIndex.index = index;
     }

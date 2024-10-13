@@ -1,8 +1,8 @@
 package Models;
 
 public class DiceGameModel {
-    private DieModel d1;
-    private DieModel d2;
+    private final DieModel d1;
+    private final DieModel d2;
 
     public DiceGameModel(){
         d1 = new DieModel();

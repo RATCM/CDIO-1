@@ -13,8 +13,12 @@ import Utils.Size;
  * <p> {@link Components.RawTextComponent} or {@link Components.CenteredTextComponent} instead
  * @deprecated
  */
+@Deprecated
+// Because this class is deprecated, it shouldn't
+// complain that it's unused.
+@SuppressWarnings("unused")
 public class TextComponent extends Component{
-    private String _text;
+    private final String _text;
 
     public TextComponent(Point location, Size size, String text) {
         super(location, size);
@@ -33,7 +37,7 @@ public class TextComponent extends Component{
         Console.setCursorPosition(this.location);
 
         Console.setBackgroundColor(this.backgroundColor);
-        Console.setForegroundColor(this.forgroundColor);    
+        Console.setForegroundColor(this.forgroundColor);
 
         for(int i = 0; i < outputString.length; i++){
             Point p = new Point(this.location.x, this.location.y + i);

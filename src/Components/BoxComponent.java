@@ -9,7 +9,7 @@ import Utils.Color;
  * This displays a region filled with some character
  */
 public class BoxComponent extends Component {
-    private char _fillChar;
+    private final char _fillChar;
 
     public BoxComponent(Point location, Size size, char fillChar) {
         super(location, size);

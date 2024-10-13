@@ -7,6 +7,7 @@ import Utils.Size;
 import Views.Interfaces.IMainMenuView;
 import Components.*;
 
+@java.lang.SuppressWarnings("unused")
 public class VisualMainMenuView extends View implements IMainMenuView {
     private RawTextComponent _titleText;
     
@@ -14,7 +15,7 @@ public class VisualMainMenuView extends View implements IMainMenuView {
     private BoxComponent _innerInputBox;
     private CenteredTextComponent _inputLabel;
 
-    private java.util.Scanner _scanner;
+    private final java.util.Scanner _scanner;
 
 
     public VisualMainMenuView(Point location, java.util.Scanner scanner) {
@@ -24,9 +25,12 @@ public class VisualMainMenuView extends View implements IMainMenuView {
         initializeView();
     }
 
-    // Ascii art made using:
-    // https://patorjk.com/software/taag/
-    private final String menuTitleText(){
+    // Java gives us an annoying warning on this method
+    @SuppressWarnings("All")
+    private String menuTitleText(){
+        // Ascii art made using:
+        // https://patorjk.com/software/taag/
+
         return  " __  __    _    ___ _   _ \n" +
                 "|  \\/  |  / \\  |_ _| \\ | |\n" +
                 "| |\\/| | / _ \\  | ||  \\| |\n" +
@@ -37,7 +41,6 @@ public class VisualMainMenuView extends View implements IMainMenuView {
                 "| |  | | |___| |\\  | |_| |\n" +
                 "|_|  |_|_____|_| \\_|\\___/ \n";
     }
-
     
     @Override
     public String getPlayerName() {

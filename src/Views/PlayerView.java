@@ -92,7 +92,7 @@ class PlayerView extends View {
 
     /**
      * Sets the points of the player to the component
-     * @param points
+     * @param points the points to assign
      */
     public void setPoints(int points){
         _playerPointsText.setText(String.valueOf(points));
@@ -100,7 +100,7 @@ class PlayerView extends View {
 
     /**
      * Sets the name of the player to the component
-     * @param name
+     * @param name the name to assign
      */
     public void setName(String name){
         _playerNameText.setText(name);

@@ -7,7 +7,7 @@ import Models.RollResult;
 
 
 public class WinConditionRule extends GameRule {
-    private int _pointsToWin;
+    private final int _pointsToWin;
     public WinConditionRule(PlayerController[] playerStates, PlayerIndexer index, int pointsToWin) {
         super(playerStates, index);
         _pointsToWin = pointsToWin;

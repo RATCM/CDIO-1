@@ -14,10 +14,11 @@ import java.util.Scanner;
  * Displays a simple dice view in the console, 
  * should run well on most, if not all terminals
  */
+@SuppressWarnings("unused")
 public class SimpleDiceGameView implements IDiceGameView {
     private final PlayerModel[] _players;
-    private PlayerIndexer _index;
-    private Scanner _scanner;
+    private final PlayerIndexer _index;
+    private final Scanner _scanner;
 
     public SimpleDiceGameView(PlayerModel[] players, PlayerIndexer index, Scanner scanner){
         _players = players;

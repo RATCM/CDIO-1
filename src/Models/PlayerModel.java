@@ -17,7 +17,7 @@ public class PlayerModel {
     }
 
     /**
-     * Sets the {@link _hasWon} flag to true
+     * Sets the {@link PlayerModel#_hasWon} flag to true
      */
     public void makePlayerWin(){
         _hasWon = true;
@@ -25,7 +25,7 @@ public class PlayerModel {
 
     
     /**
-     * Returns the {@link _hasWon} flag
+     * Returns the {@link PlayerModel#_hasWon} flag
      */
     public boolean getHasPlayerWon(){
         return _hasWon;

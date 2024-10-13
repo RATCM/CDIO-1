@@ -15,6 +15,8 @@ public interface IDiceGameView {
     /**
      * Outptus the player detail of the selected player
      */
+    // annoying warning
+    @SuppressWarnings("unused")
     void outputPlayerDetails();
     
     /**

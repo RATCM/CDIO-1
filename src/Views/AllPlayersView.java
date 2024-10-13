@@ -78,6 +78,8 @@ class AllPlayersView extends View {
      * @param index the index of the player 
      * @param color the new color
      */
+    // We don't use this method right now
+    @SuppressWarnings("unused")
     public void setPlayerNameColor(int index, Color color){
         playerViews[index].setNameForegroundColor(color);
     }
