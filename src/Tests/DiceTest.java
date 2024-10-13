@@ -14,7 +14,8 @@ public class DiceTest {
     
         int[] distribution = new int[6];
 
-        for(int i = 0; i < rollCount ; i++){ //Rolls and stores in array
+        //Rolls and stores in array
+        for(int i = 0; i < rollCount ; i++){ 
             Die.roll();
             var currentDieValue = Die.getValue();
 
@@ -26,13 +27,13 @@ public class DiceTest {
         double standardDeviation = s_v_Array(distribution, mean, rollCount);
 
         System.out.println("Test Result of Die");
-        System.out.println("Mean: " + mean);
-        System.out.printf("Amount of 1's: %d Expected amount: %.2f Deviation: %.2f%% \n", distribution[0], avgDis, (distribution[0]-avgDis)*100.0/avgDis);
-        System.out.printf("Amount of 1's: %d Expected amount: %.2f Deviation: %.2f%% \n", distribution[1], avgDis, (distribution[1]-avgDis)*100.0/avgDis);
-        System.out.printf("Amount of 1's: %d Expected amount: %.2f Deviation: %.2f%% \n", distribution[2], avgDis, (distribution[2]-avgDis)*100.0/avgDis);
-        System.out.printf("Amount of 1's: %d Expected amount: %.2f Deviation: %.2f%% \n", distribution[3], avgDis, (distribution[3]-avgDis)*100.0/avgDis);
-        System.out.printf("Amount of 1's: %d Expected amount: %.2f Deviation: %.2f%% \n", distribution[4], avgDis, (distribution[4]-avgDis)*100.0/avgDis);
-        System.out.printf("Amount of 1's: %d Expected amount: %.2f Deviation: %.2f%% \n", distribution[5], avgDis, (distribution[5]-avgDis)*100.0/avgDis);
+        System.out.println("Mean: " + mean + "   Expected: " + 3.5);
+        System.out.printf(" 1's: %d     Expected: %.2f   Deviation: %.2f%% \n", distribution[0], avgDis, (distribution[0]-avgDis)*100.0/avgDis);
+        System.out.printf(" 2's: %d     Expected: %.2f   Deviation: %.2f%% \n", distribution[1], avgDis, (distribution[1]-avgDis)*100.0/avgDis);
+        System.out.printf(" 3's: %d     Expected: %.2f   Deviation: %.2f%% \n", distribution[2], avgDis, (distribution[2]-avgDis)*100.0/avgDis);
+        System.out.printf(" 4's: %d     Expected: %.2f   Deviation: %.2f%% \n", distribution[3], avgDis, (distribution[3]-avgDis)*100.0/avgDis);
+        System.out.printf(" 5's: %d     Expected: %.2f   Deviation: %.2f%% \n", distribution[4], avgDis, (distribution[4]-avgDis)*100.0/avgDis);
+        System.out.printf(" 6's: %d     Expected: %.2f   Deviation: %.2f%% \n", distribution[5], avgDis, (distribution[5]-avgDis)*100.0/avgDis);
         System.out.printf("Standard Deviation: %.2f ", standardDeviation);
     }
     
