@@ -14,8 +14,8 @@ import Utils.Size;
 import Views.Interfaces.IDiceGameView;
 import java.util.Scanner;
 
-// This class is essentialy the view for the "Good UI".
-// I.e it has a GUI with colored text and a pretty layout.
+// This class is essentially the view for the "Good UI".
+// I.e. it has a GUI with colored text and a pretty layout.
 @SuppressWarnings("unused")
 public class VisualDiceGameView extends View implements IDiceGameView {
     private final PlayerIndexer _currentSelectedPlayer;
@@ -30,7 +30,7 @@ public class VisualDiceGameView extends View implements IDiceGameView {
 
 
     public VisualDiceGameView(PlayerModel[] players, PlayerIndexer index, Scanner scanner){
-        // For now we just assume there are only two players,
+        // For now, we just assume there are only two players,
         // hence the fixed size.
         super(new Point(1,1),new Size(60, 50));
 
@@ -73,7 +73,7 @@ public class VisualDiceGameView extends View implements IDiceGameView {
     public void outputPlayerDetails() {
         // It is generally not good practice to use the fields inside
         // the view itself to update the view.
-        // This should probably be avioided if possible
+        // This should generally be avoided if possible
         PlayerModel curPlayer = _players[_currentSelectedPlayer.index];
 
         _allPlayersView.setPoints(_currentSelectedPlayer.index, curPlayer.points);

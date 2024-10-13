@@ -1,7 +1,7 @@
 package Models;
 
 /**
- * <p> Represents a the player,
+ * <p> Represents a player,
  * <p> Is mainly used by {@link Controllers.PlayerController}
  * <p> And is created by {@link Controllers.MainMenuController}
  */

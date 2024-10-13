@@ -85,7 +85,7 @@ public class PlayerController {
 
     /**
      * Removes some points from the player
-     * @param points The amound of points to remove
+     * @param points The amount of points to remove
      */
     // Java complains that this method is unused
     @SuppressWarnings("unused")
@@ -109,7 +109,7 @@ public class PlayerController {
     }
 
     /**
-     * @return Whether or not the player has won.
+     * @return Whether the player has won.
      */
     // Java complains that this method is unused
     @SuppressWarnings("unused")
@@ -117,7 +117,7 @@ public class PlayerController {
         return _player.getHasPlayerWon();
     }
 
-    // The Math.Clamp method doesnt exist for older
+    // The Math.Clamp method doesn't exist for older
     // versions of Java, so we're defining it here
     // If this becomes used in other classes, it should
     // be put into a class in Utils

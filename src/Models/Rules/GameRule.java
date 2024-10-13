@@ -31,8 +31,8 @@ public abstract class GameRule {
     /** 
      * Validates a rule
      * 
-     * @param result the result of a dice roll
-     * @return true is the rule is applicaple, otherwise false
+     * @param result the result of the dice roll
+     * @return true is the rule is applicable, otherwise false
      */
     public abstract boolean isApplicaple(RollResult result);
 
@@ -41,7 +41,7 @@ public abstract class GameRule {
      * <p> This shouldn't be called anywhere outside of this class
      * 
      * @param diceGameState the DiceGameController
-     * @param result the result of a dice roll
+     * @param result the result of the dice roll
      */
     protected abstract void applyRule(DiceGameController diceGameState, RollResult result);
     
@@ -50,7 +50,7 @@ public abstract class GameRule {
      * <p> The rule gets unstaged after this method is called
      *
      * @param diceGameState the DiceGameController
-     * @param result the result of a dice roll
+     * @param result the result of the dice roll
      */
     public final void apply(DiceGameController diceGameState, RollResult result){
         if(staged){

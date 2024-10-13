@@ -56,7 +56,7 @@ public class DiceGameController {
             _currentPlayerIndex.index = (_currentPlayerIndex.index+1)%numberOfPlayers;
         }
 
-        // Make sure the field is always false afterwards
+        // Make sure the field is always false afterward
         _playerHasExtraTurn = false;
     }
 
@@ -111,7 +111,7 @@ public class DiceGameController {
     }
 
     /**
-     * @return Whether or not some player has won
+     * @return Whether some player has won
      */
     public boolean somePlayerHasWon(){
         return _playerHasWon;

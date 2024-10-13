@@ -8,7 +8,7 @@ import Utils.Point;
 import Utils.Size;
 
 /**
- * Displays the result of a dice throw
+ * Displays the result, of the dice throw
  */
 class DiceThrowResultView extends View {
     private BoxComponent _outerBox;

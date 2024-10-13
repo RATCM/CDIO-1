@@ -13,7 +13,7 @@ public interface IDiceGameView {
     void getUserInput();
 
     /**
-     * Outptus the player detail of the selected player
+     * Outputs the player detail of the selected player
      */
     // annoying warning
     @SuppressWarnings("unused")
@@ -26,19 +26,19 @@ public interface IDiceGameView {
     void outputPlayerDetails(int index);
 
     /**
-     * Outputs the detials of all the players
+     * Outputs the details of all the players
      */
     void outputAllPlayerDetails();
 
     /**
-     * Outputs the roll result of a dice throw
+     * Outputs the roll result of the dice throw
      * @param sum the sum of dice
-     * @param isEqual Whether or not the dice values are equal
+     * @param isEqual Whether the dice values are equal
      */
     void outputDiceRollResult(int sum, boolean isEqual);
 
     /**
-     * <p> This displayer the player who has won,
+     * <p> This displays the player who has won,
      * <p> It shouldn't be called if no player has won yet
      */
     void outputWinningPlayer();

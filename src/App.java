@@ -12,7 +12,7 @@ public class App {
         
         // Opens the main menu
         // Prompts the players to enter their initials
-        // and continues afterwards
+        // and continues afterward
         var players = getPlayersFromUserInput(scanner);
         
         // Creates the dice game view and outputs
@@ -84,7 +84,7 @@ public class App {
             diceGameController.applyRules(result);
 
             // Break the loop if a player has won
-            // This is impotant so we dont call
+            // This is important so we don't call
             // switchToNextPlayer when a player has won.
             if(diceGameController.somePlayerHasWon()){
                 break;

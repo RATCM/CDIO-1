@@ -7,7 +7,7 @@ import Utils.Size;
 
 /**
  * <p> This represents raw text, i.e.
- * <p> text that doesn't have any fancy beaviour
+ * <p> text that doesn't have any fancy behaviour
  */
 public class RawTextComponent extends Component{
     private String _text;

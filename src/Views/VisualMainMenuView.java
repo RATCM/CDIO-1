@@ -57,7 +57,7 @@ public class VisualMainMenuView extends View implements IMainMenuView {
 
         var name = _scanner.nextLine();
 
-        // We just shorten the name if its
+        // We just shorten the name if it's
         // above the allowed length
         if(name.length() > _inputLabel.size.width-2){
             name = name.substring(0, _inputLabel.size.width-3);

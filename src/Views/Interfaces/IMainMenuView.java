@@ -13,7 +13,7 @@ public interface IMainMenuView {
     
     /**
      * <p> Displays a prompt to start the game,
-     * <p> and continues afterwards
+     * <p> and continues afterward
      */
     void startGame();
 }
