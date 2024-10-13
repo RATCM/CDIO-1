@@ -12,7 +12,7 @@ public class TwoSixesRule extends GameRule {
     }
 
     @Override
-    public boolean isApplicaple(RollResult result) {
+    public boolean isApplicable(RollResult result) {
         return result.sum == 12 && getCurrentPlayer().getPreviousRoll().sum == 12;
     }
 

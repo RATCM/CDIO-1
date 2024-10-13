@@ -14,7 +14,7 @@ public class WinConditionRule extends GameRule {
     }
 
     @Override
-    public boolean isApplicaple(RollResult result) {
+    public boolean isApplicable(RollResult result) {
         return result.sum != 2 && result.isIdentical && (getCurrentPlayer().getPoints() >= _pointsToWin);
     }
 

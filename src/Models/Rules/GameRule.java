@@ -34,7 +34,7 @@ public abstract class GameRule {
      * @param result the result of the dice roll
      * @return true is the rule is applicable, otherwise false
      */
-    public abstract boolean isApplicaple(RollResult result);
+    public abstract boolean isApplicable(RollResult result);
 
     /** 
      * <p> This method contains the actual logic for how the rule is applied.

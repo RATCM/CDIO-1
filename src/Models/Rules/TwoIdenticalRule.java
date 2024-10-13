@@ -11,7 +11,7 @@ public class TwoIdenticalRule extends GameRule {
     }
 
     @Override
-    public boolean isApplicaple(RollResult result) {
+    public boolean isApplicable(RollResult result) {
         // The rules in the vision doesn't explicitly say
         // that the rule doesn't apply if they hit two ones,
         // but we decided to do so anyway        
